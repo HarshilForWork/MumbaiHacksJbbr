@@ -1,0 +1,110 @@
+{
+  "post_id": "aegis_post_20251129_100040_573217_8aef784b",
+  "verification_date": "2025-11-29T10:00:40.573217",
+  "claim": {
+    "text": "Despite acquiring new skills and actively seeking new opportunities, an individual's salary has remained stagnant for three years, contrasting with the country's reported high GDP growth.",
+    "verdict": "uncertain",
+    "verified": false
+  },
+  "post_content": {
+    "heading": "Stagnant Salary vs. GDP Growth: Not Always a Contradiction",
+    "body": "The claim highlights an individual's stagnant salary over three years, despite acquiring new skills and their country experiencing high GDP growth. While personal financial experiences are valid, linking individual salary stagnation directly as a contradiction to national GDP growth is an oversimplification. Gross Domestic Product (GDP) measures the total economic output of a country, and while healthy GDP growth can signal a stronger economy, it doesn't automatically translate into immediate or uniform wage increases for all individuals. Factors like inflation, industry-specific conditions, job market competition, company-specific performance, and global economic trends can all impact individual salaries. Furthermore, this claim is an unverified personal anecdote without specific details about the individual, their industry, or the country, making it impossible to evaluate its broader economic implications or if it represents a widespread trend.",
+    "summary": "An individual's stagnant salary, though a valid personal experience, does not directly contradict national GDP growth, as many factors influence individual wages.",
+    "category": "Other"
+  },
+  "sources": {
+    "misinformation_sources": [
+      {
+        "title": "Despite acquiring new skills and actively seeking new opportunities, an individual's salary has remained stagnant for three years, contrasting with the country's reported high GDP growth.",
+        "url": "https://twitter.com/IndianGems_/status/1994413718860616133",
+        "domain": "twitter.com"
+      }
+    ],
+    "confirmation_sources": [
+      {
+        "title": "What is GDP and how fast is the UK economy growing?",
+        "url": "https://www.bbc.com/news/articles/c0j7p38jg15o",
+        "domain": "www.bbc.com"
+      },
+      {
+        "title": "How Trump's tax cuts are boosting GDP, and why that might not last ...",
+        "url": "https://www.pbs.org/newshour/economy/making-sense/how-trumps-tax-cuts-are-boosting-gdp-and-why-that-might-not-last",
+        "domain": "www.pbs.org"
+      },
+      {
+        "title": "US 2020 election: The economy under Trump in six charts",
+        "url": "https://www.bbc.com/news/world-45827430",
+        "domain": "www.bbc.com"
+      },
+      {
+        "title": "Is US economy better now than under Trump?",
+        "url": "https://www.bbc.com/news/articles/c8xl5vnlzpwo",
+        "domain": "www.bbc.com"
+      },
+      {
+        "title": "Why is Spain's economy booming? Thanks to migration – which ...",
+        "url": "https://www.theguardian.com/commentisfree/2025/feb/19/spain-economy-booming-migration-gdp-growth",
+        "domain": "www.theguardian.com"
+      }
+    ],
+    "total_sources": 6
+  },
+  "confidence_percentage": 60.0,
+  "metadata": {
+    "agent_version": "2.0",
+    "processing_method": "google_agents_batch_sdk",
+    "batch_position": 4,
+    "batch_size": 7,
+    "total_batch_number": 1,
+    "original_verification": {
+      "claim_text": "Despite acquiring new skills and actively seeking new opportunities, an individual's salary has remained stagnant for three years, contrasting with the country's reported high GDP growth.",
+      "verification": {
+        "verified": false,
+        "verdict": "uncertain",
+        "message": "The sources discuss the relationship between GDP growth and pay, and even indicate periods of rising wages in certain contexts. However, none of the provided sources mention a specific individual experiencing a stagnant salary for three years despite acquiring new skills and seeking new opportunities, as stated in the claim.",
+        "confidence": "high",
+        "reasoning": "The claim describes a specific personal financial situation. Source 1 (BBC, 2025/11/13) provides general context on how 'economic growth matters because it affects things like pay increases.' Source 2 (PBS, 2018/10/26) mentions 'Wages are starting to tick up' in the context of GDP growth, and Source 3 (BBC, 2020/11/03) cites 'real wage increases of up to 2.4%' in the US. These general discussions of wages and GDP do not provide any evidence for the specific individual's stagnant salary, acquired skills, or job-seeking efforts, nor do they confirm the 'three years' timeframe or the specific country implied by the claim. In fact, some snippets suggest the opposite of stagnant wages.",
+        "sources": {
+          "links": [
+            "https://www.bbc.com/news/articles/c0j7p38jg15o",
+            "https://www.pbs.org/newshour/economy/making-sense/how-trumps-tax-cuts-are-boosting-gdp-and-why-that-might-not-last",
+            "https://www.bbc.com/news/world-45827430",
+            "https://www.bbc.com/news/articles/c8xl5vnlzpwo",
+            "https://www.theguardian.com/commentisfree/2025/feb/19/spain-economy-booming-migration-gdp-growth"
+          ],
+          "titles": [
+            "What is GDP and how fast is the UK economy growing?",
+            "How Trump's tax cuts are boosting GDP, and why that might not last ...",
+            "US 2020 election: The economy under Trump in six charts",
+            "Is US economy better now than under Trump?",
+            "Why is Spain's economy booming? Thanks to migration – which ..."
+          ],
+          "count": 10
+        },
+        "claim_text": "Despite acquiring new skills and actively seeking new opportunities, an individual's salary has remained stagnant for three years, contrasting with the country's reported high GDP growth.",
+        "verification_date": "2025-11-29T09:59:15.190860"
+      },
+      "sources": {
+        "links": [
+          "https://www.bbc.com/news/articles/c0j7p38jg15o",
+          "https://www.pbs.org/newshour/economy/making-sense/how-trumps-tax-cuts-are-boosting-gdp-and-why-that-might-not-last",
+          "https://www.bbc.com/news/world-45827430",
+          "https://www.bbc.com/news/articles/c8xl5vnlzpwo",
+          "https://www.theguardian.com/commentisfree/2025/feb/19/spain-economy-booming-migration-gdp-growth"
+        ],
+        "titles": [
+          "What is GDP and how fast is the UK economy growing?",
+          "How Trump's tax cuts are boosting GDP, and why that might not last ...",
+          "US 2020 election: The economy under Trump in six charts",
+          "Is US economy better now than under Trump?",
+          "Why is Spain's economy booming? Thanks to migration – which ..."
+        ],
+        "count": 10
+      },
+      "source": "https://twitter.com/IndianGems_/status/1994413718860616133",
+      "content_summary": "An individual highlights a personal economic stagnation, stating their salary has been fixed at 21 LPA (Lakhs Per Annum) from 2023 to 2025. This lack of growth persists even after learning new skills and attending numerous job interviews. The user contrasts their stagnant income with the country's G",
+      "verified": false,
+      "verdict": "uncertain"
+    }
+  }
+}

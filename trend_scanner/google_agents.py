@@ -1049,7 +1049,6 @@ class TrendScannerOrchestrator:
                             logger.info(f"Processed Twitter scan: {len(posts)} posts")
                         except json.JSONDecodeError as e:
                             logger.error(f"Failed to parse Twitter results: {e}")
-            
             # Calculate risk distribution across all platforms
             risk_distribution = {
                 'HIGH': len([p for p in all_trending_posts if p.get('risk_level') == 'HIGH']),

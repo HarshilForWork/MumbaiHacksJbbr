@@ -1,0 +1,110 @@
+{
+  "post_id": "aegis_post_20251129_100040_573217_c108f5eb",
+  "verification_date": "2025-11-29T10:00:40.573217",
+  "claim": {
+    "text": "A list ranks various countries based on the perceived unattractiveness of their men for the year 2025.",
+    "verdict": "uncertain",
+    "verified": false
+  },
+  "post_content": {
+    "heading": "No Credible 'Unattractive Men' Country Ranking for 2025",
+    "body": "The claim suggests the existence of a list ranking various countries based on the perceived unattractiveness of their men for the year 2025. There is no credible or reputable source that provides such a ranking. Attractiveness is a highly subjective and culturally varied perception, making any objective, universally accepted ranking of entire nationalities based on this criterion impossible to create meaningfully or accurately. Lists like this, if they appear online, are typically created for entertainment, clickbait, or based on unscientific, anecdotal opinions, and are not considered reliable or factual. Furthermore, predicting such a \"ranking\" for a future year like 2025 is inherently speculative and has no basis in reality.",
+    "summary": "There is no credible or reputable list ranking countries by the perceived unattractiveness of their men for 2025, as attractiveness is subjective and such rankings are unscientific.",
+    "category": "Other"
+  },
+  "sources": {
+    "misinformation_sources": [
+      {
+        "title": "A list ranks various countries based on the perceived unattractiveness of their men for the year 2025.",
+        "url": "https://twitter.com/IndianGems_/status/1994377608671514812",
+        "domain": "twitter.com"
+      }
+    ],
+    "confirmation_sources": [
+      {
+        "title": "India's economy: The good, bad and ugly in six charts",
+        "url": "https://www.bbc.com/news/world-asia-india-68823827",
+        "domain": "www.bbc.com"
+      },
+      {
+        "title": "Snoring was ruining my marriage – here's how I finally cured myself ...",
+        "url": "https://www.theguardian.com/lifeandstyle/2022/jul/16/snoring-was-ruining-my-marriage-heres-how-i-finally-cured-myself",
+        "domain": "www.theguardian.com"
+      },
+      {
+        "title": "'It's nothing like a broken leg': why I'm done with the mental health ...",
+        "url": "https://www.theguardian.com/society/2018/jun/30/nothing-like-broken-leg-mental-health-conversation",
+        "domain": "www.theguardian.com"
+      },
+      {
+        "title": "Five pleasant surprises of the men's NCAA Tournament bubble: Can ...",
+        "url": "https://www.nytimes.com/athletic/6128814/2025/02/12/mens-basketball-ncaa-tournament-bubble-teams-oklahoma-smu/",
+        "domain": "www.nytimes.com"
+      },
+      {
+        "title": "'Hatemonger' Paints Trump Advisor Stephen Miller As A 'Case Study ...",
+        "url": "https://www.npr.org/2020/08/24/905403716/hatemonger-paints-trump-advisor-stephen-miller-as-a-case-study-in-radicalization",
+        "domain": "www.npr.org"
+      }
+    ],
+    "total_sources": 6
+  },
+  "confidence_percentage": 60.0,
+  "metadata": {
+    "agent_version": "2.0",
+    "processing_method": "google_agents_batch_sdk",
+    "batch_position": 7,
+    "batch_size": 7,
+    "total_batch_number": 1,
+    "original_verification": {
+      "claim_text": "A list ranks various countries based on the perceived unattractiveness of their men for the year 2025.",
+      "verification": {
+        "verified": false,
+        "verdict": "uncertain",
+        "message": "None of the provided sources discuss any list ranking countries based on the perceived unattractiveness of their men for any year, including 2025. The sources are completely unrelated to the claim.",
+        "confidence": "high",
+        "reasoning": "Source 1 discusses India's economy. Source 2 discusses snoring and marriage. Source 3 discusses mental health. There is absolutely no information within any of these snippets that pertains to country rankings based on the attractiveness of men. Therefore, the claim cannot be verified or refuted using the provided sources.",
+        "sources": {
+          "links": [
+            "https://www.bbc.com/news/world-asia-india-68823827",
+            "https://www.theguardian.com/lifeandstyle/2022/jul/16/snoring-was-ruining-my-marriage-heres-how-i-finally-cured-myself",
+            "https://www.theguardian.com/society/2018/jun/30/nothing-like-broken-leg-mental-health-conversation",
+            "https://www.nytimes.com/athletic/6128814/2025/02/12/mens-basketball-ncaa-tournament-bubble-teams-oklahoma-smu/",
+            "https://www.npr.org/2020/08/24/905403716/hatemonger-paints-trump-advisor-stephen-miller-as-a-case-study-in-radicalization"
+          ],
+          "titles": [
+            "India's economy: The good, bad and ugly in six charts",
+            "Snoring was ruining my marriage – here's how I finally cured myself ...",
+            "'It's nothing like a broken leg': why I'm done with the mental health ...",
+            "Five pleasant surprises of the men's NCAA Tournament bubble: Can ...",
+            "'Hatemonger' Paints Trump Advisor Stephen Miller As A 'Case Study ..."
+          ],
+          "count": 10
+        },
+        "claim_text": "A list ranks various countries based on the perceived unattractiveness of their men for the year 2025.",
+        "verification_date": "2025-11-29T09:59:15.190860"
+      },
+      "sources": {
+        "links": [
+          "https://www.bbc.com/news/world-asia-india-68823827",
+          "https://www.theguardian.com/lifeandstyle/2022/jul/16/snoring-was-ruining-my-marriage-heres-how-i-finally-cured-myself",
+          "https://www.theguardian.com/society/2018/jun/30/nothing-like-broken-leg-mental-health-conversation",
+          "https://www.nytimes.com/athletic/6128814/2025/02/12/mens-basketball-ncaa-tournament-bubble-teams-oklahoma-smu/",
+          "https://www.npr.org/2020/08/24/905403716/hatemonger-paints-trump-advisor-stephen-miller-as-a-case-study-in-radicalization"
+        ],
+        "titles": [
+          "India's economy: The good, bad and ugly in six charts",
+          "Snoring was ruining my marriage – here's how I finally cured myself ...",
+          "'It's nothing like a broken leg': why I'm done with the mental health ...",
+          "Five pleasant surprises of the men's NCAA Tournament bubble: Can ...",
+          "'Hatemonger' Paints Trump Advisor Stephen Miller As A 'Case Study ..."
+        ],
+        "count": 10
+      },
+      "source": "https://twitter.com/IndianGems_/status/1994377608671514812",
+      "content_summary": "The post presents a ranked list, titled \"Countries with the most unattractive men in 2025.\" The list includes numerous nations from different continents, such as Bangladesh (ranked 1st), Pakistan, Egypt, Maldives, Ethiopia, Kenya, Nigeria, Philippines, Nepal, Sri Lanka, South Africa, Iraq, United St",
+      "verified": false,
+      "verdict": "uncertain"
+    }
+  }
+}

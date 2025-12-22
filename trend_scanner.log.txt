@@ -718,3 +718,712 @@ LiteLLM completion() model= gemini-2.5-flash; provider = gemini
 2025-11-29 09:30:41,489 [INFO] __main__: ✅ Successfully stored 6 debunk posts to MongoDB
 2025-11-29 09:30:41,498 [INFO] mongodb_integration: 🔌 MongoDB connection closed
 2025-11-29 09:30:41,503 [INFO] __main__: Google Agents orchestrated pipeline with batch processing completed successfully
+2025-11-29 09:54:26,315 [INFO] __main__: Orchestrator Agent initialized with Google Agents SDK - Session: orchestrator_session_20251129_095426
+2025-11-29 09:54:26,315 [INFO] __main__: Initializing Google Agents Orchestrator...
+2025-11-29 09:54:26,315 [INFO] __main__: Google Agents Orchestrator initialized successfully
+2025-11-29 09:54:26,315 [INFO] __main__: Initializing Claim Verifier with Google Agents...
+2025-11-29 09:54:26,315 [INFO] claim_verifier.agents: Google Agents Orchestrator initialized successfully
+2025-11-29 09:54:26,315 [INFO] claim_verifier.agents: Created Google Agent: claim_extractor - Claim Extraction Specialist
+2025-11-29 09:54:26,315 [INFO] claim_verifier.agents: Created Google Agent: fact_verifier - Fact Verification Specialist
+2025-11-29 09:54:26,315 [INFO] claim_verifier.agents: Created Google Agent: priority_assessor - Priority Assessment Specialist
+2025-11-29 09:54:26,315 [INFO] claim_verifier.agents: Created Google Agent: report_generator - Report Generation Specialist
+2025-11-29 09:54:26,315 [INFO] claim_verifier.agents: Claim verification agents setup completed with Google Agents SDK
+2025-11-29 09:54:26,315 [INFO] claim_verifier.agents: Claim Verifier Orchestrator initialized with Google Agents SDK
+2025-11-29 09:54:26,315 [INFO] __main__: Initializing Explanation Agent with Google Agents...
+2025-11-29 09:54:26,315 [INFO] explanation_agent.agents: Google Agents Orchestrator initialized for Explanation Agent
+2025-11-29 09:54:26,323 [INFO] explanation_agent.agents: Created Google Agent: content_generator - Content Generation Specialist
+2025-11-29 09:54:26,323 [INFO] explanation_agent.agents: Created Google Agent: source_analyzer - Source Analysis Specialist
+2025-11-29 09:54:26,323 [INFO] explanation_agent.agents: Created Google Agent: post_formatter - Post Formatting Specialist
+2025-11-29 09:54:26,323 [INFO] explanation_agent.agents: Google Agents setup completed for explanation workflow
+2025-11-29 09:54:26,324 [INFO] explanation_agent.agents: Explanation Agent initialized with Google Agents SDK
+2025-11-29 09:54:26,324 [INFO] __main__: Created Google Agent: trend_scanner - Trend Scanning Coordinator
+2025-11-29 09:54:26,324 [INFO] __main__: Created Google Agent: verifier_coordinator - Claim Verification Coordinator
+2025-11-29 09:54:26,324 [INFO] __main__: Created Google Agent: explanation_coordinator - Explanation Generation Coordinator
+2025-11-29 09:54:26,324 [INFO] __main__: Created Google Agent: results_integrator - Results Integration Specialist
+2025-11-29 09:54:26,324 [INFO] __main__: Orchestrator agents setup completed with Google Agents SDK
+2025-11-29 09:54:26,324 [INFO] __main__: Orchestrator Agent fully initialized with Google Agents SDK
+2025-11-29 09:54:26,324 [INFO] __main__: Starting Google Agents orchestrated pipeline: Trend Scanning → Claim Verification
+2025-11-29 09:54:26,324 [INFO] __main__: Step 1: Executing trend scanning with Google Agents...
+2025-11-29 09:54:26,324 [INFO] __main__: Starting Google Agents workflow with 1 tasks
+2025-11-29 09:54:26,324 [INFO] __main__: Executing task 1/1: trend_scanner - Execute comprehensive Reddit trend scanning with AI summarization and claim extraction
+2025-11-29 09:54:26,324 [INFO] __main__: Agent Trend Scanning Coordinator has 1 tools available
+2025-11-29 09:54:26,324 [INFO] __main__: Tool 0: <class 'function'> with methods: []...
+2025-11-29 09:54:26,324 [INFO] __main__: Starting tool detection for task: 'Execute comprehensive Reddit trend scanning with AI summarization and claim extraction'
+2025-11-29 09:54:26,324 [INFO] __main__: Checking conditions:
+2025-11-29 09:54:26,324 [INFO] __main__:   - hasattr(tool, '__call__'): True
+2025-11-29 09:54:26,324 [INFO] __main__:   - 'scan' in task_description.lower(): True
+2025-11-29 09:54:26,326 [INFO] __main__:   - hasattr(tool, 'verify_content'): False
+2025-11-29 09:54:26,326 [INFO] __main__:   - 'verify' in task_description.lower(): False
+2025-11-29 09:54:26,326 [INFO] __main__:   - hasattr(tool, 'execute_workflow'): False
+2025-11-29 09:54:26,326 [INFO] __main__:   - hasattr(tool, 'batch_create_posts'): False
+2025-11-29 09:54:26,326 [INFO] __main__:   - 'explanation' in task_description.lower(): False
+2025-11-29 09:54:26,326 [INFO] __main__:   - hasattr(tool, 'create_debunk_post'): False
+2025-11-29 09:54:26,326 [INFO] __main__: Agent Trend Scanning Coordinator executing trend scanning tool...
+2025-11-29 09:54:26,328 [INFO] trend_scanner.google_agents: Google Agents orchestration initialized successfully
+2025-11-29 09:54:26,671 [INFO] trend_scanner.google_agents: PRAW Reddit client authenticated successfully
+2025-11-29 09:54:30,169 [INFO] trend_scanner.tools.reddit_scan_tool: Google Agents SDK initialized successfully
+2025-11-29 09:54:30,172 [WARNING] trend_scanner.google_agents: Threads scanner initialization failed: unindent does not match any outer indentation level (threads_scraper.py, line 311)
+2025-11-29 09:54:30,172 [INFO] trend_scanner.tools.twitter_scan_tool: Google Agents SDK initialized for Twitter scanner
+2025-11-29 09:54:30,172 [INFO] trend_scanner.google_agents: Twitter scanner initialized successfully
+2025-11-29 09:54:30,172 [INFO] trend_scanner.google_agents: Created Google Agent: reddit_scanner - Enhanced Reddit Trend Scout
+2025-11-29 09:54:30,172 [INFO] trend_scanner.google_agents: Created Google Agent: twitter_scanner - Twitter/X Trend Scout
+2025-11-29 09:54:30,172 [INFO] trend_scanner.google_agents: Created Google Agent: risk_assessor - Cross-Platform Content Risk Assessor
+2025-11-29 09:54:30,172 [INFO] trend_scanner.google_agents: Google agents created for platforms: Reddit, Twitter
+2025-11-29 09:54:30,173 [INFO] trend_scanner.google_agents: Target subreddits configured: ['NoFilterNews', 'badscience', 'skeptic', 'conspiracytheories']
+2025-11-29 09:54:30,173 [INFO] trend_scanner.google_agents: Target Threads profiles configured: ['globaltimes_news', 'trumplovernews']
+2025-11-29 09:54:30,173 [INFO] trend_scanner.google_agents: Target Twitter configured: 4 accounts, AUTO-DISCOVER trending topics, scan_type=both
+2025-11-29 09:54:30,173 [INFO] trend_scanner.google_agents: Starting multi-platform trend scanning (Reddit + Twitter/both)...
+2025-11-29 09:54:30,173 [INFO] trend_scanner.google_agents: Created Google Agent: reddit_scanner - Reddit Trend Scout
+2025-11-29 09:54:30,173 [INFO] trend_scanner.google_agents: Created Google Agent: twitter_scanner - Twitter/X Trend Scout
+2025-11-29 09:54:30,173 [INFO] trend_scanner.google_agents: Created Google Agent: risk_assessor - Cross-Platform Content Risk Assessor
+2025-11-29 09:54:30,175 [INFO] trend_scanner.google_agents: Auto-discovering Twitter trending topics...
+2025-11-29 09:54:31,024 [INFO] trend_scanner.tools.twitter_scan_tool: Loading cookies from twitter_cookies.json
+2025-11-29 09:54:31,027 [INFO] trend_scanner.tools.twitter_scan_tool: Twitter client authenticated from cookies
+2025-11-29 09:54:31,028 [INFO] trend_scanner.tools.twitter_scan_tool: Fetching Twitter trending topics...
+2025-11-29 09:54:32,373 [INFO] trend_scanner.tools.twitter_scan_tool: Found trending topic: #CareerGuidance
+2025-11-29 09:54:32,373 [INFO] trend_scanner.tools.twitter_scan_tool: Found trending topic: #GurukulShiksha
+2025-11-29 09:54:32,373 [INFO] trend_scanner.tools.twitter_scan_tool: Found trending topic: Holistic Learning
+2025-11-29 09:54:32,373 [INFO] trend_scanner.tools.twitter_scan_tool: Found trending topic: Sanatan Sanskriti
+2025-11-29 09:54:32,373 [INFO] trend_scanner.tools.twitter_scan_tool: Found trending topic: #यथार्थ_गीता_ज्ञान
+2025-11-29 09:54:32,373 [INFO] trend_scanner.tools.twitter_scan_tool: Found trending topic: #GodMorningSaturday
+2025-11-29 09:54:32,374 [INFO] trend_scanner.tools.twitter_scan_tool: Found trending topic: शनि देव
+2025-11-29 09:54:32,374 [INFO] trend_scanner.tools.twitter_scan_tool: Found trending topic: Saint Gurmeet Ram Rahim Singh
+2025-11-29 09:54:32,374 [INFO] trend_scanner.tools.twitter_scan_tool: Found trending topic: Sant Shri Asharamji Bapu
+2025-11-29 09:54:32,374 [INFO] trend_scanner.tools.twitter_scan_tool: Found trending topic: Sant Rampal Ji Maharaj
+2025-11-29 09:54:32,374 [INFO] trend_scanner.tools.twitter_scan_tool: Found trending topic: #JRDTata
+2025-11-29 09:54:32,374 [INFO] trend_scanner.tools.twitter_scan_tool: Found trending topic: Thanksgiving
+2025-11-29 09:54:32,374 [INFO] trend_scanner.tools.twitter_scan_tool: Found trending topic: भारत रत्न
+2025-11-29 09:54:32,374 [INFO] trend_scanner.tools.twitter_scan_tool: Found trending topic: डेरा सच्चा सौदा
+2025-11-29 09:54:32,375 [INFO] trend_scanner.tools.twitter_scan_tool: Found trending topic: श्री हनुमान
+2025-11-29 09:54:32,375 [INFO] trend_scanner.tools.twitter_scan_tool: Found trending topic: श्री राम
+2025-11-29 09:54:32,375 [INFO] trend_scanner.tools.twitter_scan_tool: Found trending topic: गुरुकुल शिक्षा
+2025-11-29 09:54:32,375 [INFO] trend_scanner.tools.twitter_scan_tool: Found trending topic: विशेषज्ञ स्वयंसेवक
+2025-11-29 09:54:32,375 [INFO] trend_scanner.tools.twitter_scan_tool: Found trending topic: महान समाज
+2025-11-29 09:54:32,375 [INFO] trend_scanner.tools.twitter_scan_tool: Found trending topic: पवित्र गीता
+2025-11-29 09:54:32,375 [INFO] trend_scanner.tools.twitter_scan_tool: Found trending topic: श्री जितिन प्रसाद
+2025-11-29 09:54:32,375 [INFO] trend_scanner.tools.twitter_scan_tool: Found trending topic: कैप्टन गुरबचन सिंह सलारिया
+2025-11-29 09:54:32,375 [INFO] trend_scanner.tools.twitter_scan_tool: Found trending topic: 8.2% GDP
+2025-11-29 09:54:32,375 [INFO] trend_scanner.tools.twitter_scan_tool: Found trending topic: परमवीर चक्र
+2025-11-29 09:54:32,375 [INFO] trend_scanner.tools.twitter_scan_tool: Found trending topic: आधुनिक शिक्षा
+2025-11-29 09:54:32,377 [INFO] trend_scanner.tools.twitter_scan_tool: Found trending topic: ARMY Protect The 8thDaesang
+2025-11-29 09:54:32,377 [INFO] trend_scanner.tools.twitter_scan_tool: Found trending topic: adityabirla sunlifeinsurance
+2025-11-29 09:54:32,377 [INFO] trend_scanner.tools.twitter_scan_tool: Found trending topic: Dera Sacha Sauda
+2025-11-29 09:54:32,377 [INFO] trend_scanner.tools.twitter_scan_tool: Found trending topic: औद्योगिक क्रांति
+2025-11-29 09:54:32,377 [INFO] trend_scanner.tools.twitter_scan_tool: Found trending topic: India's GDP
+2025-11-29 09:54:32,377 [INFO] trend_scanner.tools.twitter_scan_tool: Successfully fetched 30 trending topics
+2025-11-29 09:54:32,377 [INFO] trend_scanner.google_agents: Auto-discovered 30 trending topics: ['#CareerGuidance', '#GurukulShiksha', 'Holistic Learning', 'Sanatan Sanskriti', '#यथार्थ_गीता_ज्ञान', '#GodMorningSaturday', 'शनि देव', 'Saint Gurmeet Ram Rahim Singh', 'Sant Shri Asharamji Bapu', 'Sant Rampal Ji Maharaj', '#JRDTata', 'Thanksgiving', 'भारत रत्न', 'डेरा सच्चा सौदा', 'श्री हनुमान', 'श्री राम', 'गुरुकुल शिक्षा', 'विशेषज्ञ स्वयंसेवक', 'महान समाज', 'पवित्र गीता', 'श्री जितिन प्रसाद', 'कैप्टन गुरबचन सिंह सलारिया', '8.2% GDP', 'परमवीर चक्र', 'आधुनिक शिक्षा', 'ARMY Protect The 8thDaesang', 'adityabirla sunlifeinsurance', 'Dera Sacha Sauda', 'औद्योगिक क्रांति', "India's GDP"]
+2025-11-29 09:54:32,377 [INFO] trend_scanner.google_agents: Starting parallel scan across 4 subreddits, 34 Twitter targets
+2025-11-29 09:54:32,378 [INFO] trend_scanner.google_agents: Starting parallel workflow with 38 tasks
+2025-11-29 09:54:32,378 [INFO] trend_scanner.google_agents: Executing parallel task 1/38 with agent 'reddit_scanner'
+2025-11-29 09:54:32,378 [INFO] trend_scanner.google_agents: Agent Reddit Trend Scout executing Reddit scan for r/NoFilterNews
+2025-11-29 09:54:32,378 [INFO] trend_scanner.tools.reddit_scan_tool: Starting to fetch submissions from r/NoFilterNews (limit=20, sort=new)
+2025-11-29 09:54:32,378 [WARNING] praw: It appears that you are using PRAW in an asynchronous environment.
+It is strongly recommended to use Async PRAW: https://asyncpraw.readthedocs.io.
+See https://praw.readthedocs.io/en/latest/getting_started/multiple_instances.html#discord-bots-and-asynchronous-environments for more info.
+
+2025-11-29 09:54:35,065 [INFO] trend_scanner.scraper: scraper: newspaper extracted 1979 chars from https://apnews.com/article/babson-student-deported-thanksgiving-467393d8d9b9ae6351f99de7b9cbfb98
+2025-11-29 09:54:36,076 [INFO] trend_scanner.scraper: scraper: newspaper extracted 5209 chars from https://apnews.com/article/trump-hernandez-honduras-pardon-96ac8d1d44d438f64beb8b24ca54b651
+2025-11-29 09:54:38,265 [INFO] trend_scanner.scraper: scraper: newspaper extracted 7769 chars from https://franknezmedia.com/judge-demands-doj-protect-epstein-victims-identities-amid-latest-findings/
+2025-11-29 09:54:39,607 [INFO] trend_scanner.scraper: scraper: newspaper extracted 485 chars from https://www.cnn.com/2025/11/28/politics/video/analysis-will-trump-immigration-threat-make-us-safer-digvid-vrtc?cid%3Dios_app
+2025-11-29 09:54:40,561 [INFO] trend_scanner.scraper: scraper: readability extracted 1641 chars from https://thehill.com/homenews/administration/5626031-juan-orlando-hernandez-pardon-trump/
+2025-11-29 09:54:43,181 [INFO] trend_scanner.scraper: scraper: newspaper extracted 728 chars from https://2x3news.com/post/trump-proposes-permanent-pause-on-migration-from-third-world-countries-322
+2025-11-29 09:54:43,958 [INFO] trend_scanner.scraper: scraper: newspaper extracted 7589 chars from https://meduza.io/en/cards/trump-wants-russia-to-surrender-its-frozen-assets-here-s-why-putin-likely-won-t-do-it-and-why-he-just-might
+2025-11-29 09:54:43,958 [INFO] trend_scanner.tools.reddit_scan_tool: Performing batch risk assessment for 1 posts
+2025-11-29 09:54:43,979 [INFO] LiteLLM: 
+LiteLLM completion() model= gemini-2.5-flash; provider = gemini
+2025-11-29 09:54:53,211 [INFO] LiteLLM: Wrapper: Completed Call, calling success_handler
+2025-11-29 09:54:53,216 [INFO] trend_scanner.tools.reddit_scan_tool: Batch risk assessment completed for 1 posts
+2025-11-29 09:54:53,216 [INFO] trend_scanner.tools.reddit_scan_tool: Batch processing: assessed 1 posts in 1 API call
+2025-11-29 09:54:53,216 [INFO] trend_scanner.tools.reddit_scan_tool: Scan summary: Scanned r/NoFilterNews (20 posts), scraped 8 links, found 1 trending posts
+2025-11-29 09:54:53,216 [INFO] trend_scanner.google_agents: Executing parallel task 2/38 with agent 'reddit_scanner'
+2025-11-29 09:54:53,216 [INFO] trend_scanner.google_agents: Agent Reddit Trend Scout executing Reddit scan for r/badscience
+2025-11-29 09:54:53,216 [INFO] trend_scanner.tools.reddit_scan_tool: Starting to fetch submissions from r/badscience (limit=20, sort=new)
+2025-11-29 09:54:53,216 [WARNING] praw: It appears that you are using PRAW in an asynchronous environment.
+It is strongly recommended to use Async PRAW: https://asyncpraw.readthedocs.io.
+See https://praw.readthedocs.io/en/latest/getting_started/multiple_instances.html#discord-bots-and-asynchronous-environments for more info.
+
+2025-11-29 09:54:56,808 [INFO] readability.readability: ruthless removal did not work. 
+2025-11-29 09:54:56,830 [INFO] trend_scanner.scraper: scraper: bsoup body extracted 225 chars from https://www.youtube.com/watch?v=tQmAeFk05mY
+2025-11-29 09:54:59,745 [INFO] trend_scanner.scraper: scraper: newspaper extracted 2875 chars from https://www.thedailybeast.com/rfk-jr-comes-up-with-new-possible-cause-for-mass-shootings-video-games/
+2025-11-29 09:55:02,765 [INFO] trend_scanner.scraper: scraper: newspaper extracted 5978 chars from https://www.thedailybeast.com//anti-vax-rfk-jr-plans-to-blame-over-the-counter-pain-medication-for-autism/?via=ios
+2025-11-29 09:55:02,765 [WARNING] trend_scanner.scraper: requests.get failed for /r/polycritical/comments/1fc3dc4/poly_people_hate_neuroscience_because_it_cures/: Invalid URL '/r/polycritical/comments/1fc3dc4/poly_people_hate_neuroscience_because_it_cures/': No scheme supplied. Perhaps you meant https:///r/polycritical/comments/1fc3dc4/poly_people_hate_neuroscience_because_it_cures/?
+2025-11-29 09:55:03,396 [INFO] trend_scanner.scraper: scraper: newspaper extracted 8995 chars from https://reeserichardson.blog/2025/05/06/google-scholar-is-still-doing-nothing-about-citation-manipulation/
+2025-11-29 09:55:03,399 [WARNING] trend_scanner.scraper: requests.get failed for /r/highdeas/comments/1k2pstj/the_universe_is_a_puzzle/: Invalid URL '/r/highdeas/comments/1k2pstj/the_universe_is_a_puzzle/': No scheme supplied. Perhaps you meant https:///r/highdeas/comments/1k2pstj/the_universe_is_a_puzzle/?
+2025-11-29 09:55:03,399 [INFO] trend_scanner.tools.reddit_scan_tool: Performing batch risk assessment for 0 posts
+2025-11-29 09:55:03,400 [INFO] trend_scanner.tools.reddit_scan_tool: Batch processing: assessed 0 posts in 1 API call
+2025-11-29 09:55:03,400 [INFO] trend_scanner.tools.reddit_scan_tool: Scan summary: Scanned r/badscience (20 posts), scraped 4 links, found 0 trending posts
+2025-11-29 09:55:03,400 [INFO] trend_scanner.google_agents: Executing parallel task 3/38 with agent 'reddit_scanner'
+2025-11-29 09:55:03,400 [INFO] trend_scanner.google_agents: Agent Reddit Trend Scout executing Reddit scan for r/skeptic
+2025-11-29 09:55:03,400 [INFO] trend_scanner.tools.reddit_scan_tool: Starting to fetch submissions from r/skeptic (limit=20, sort=new)
+2025-11-29 09:55:03,400 [WARNING] praw: It appears that you are using PRAW in an asynchronous environment.
+It is strongly recommended to use Async PRAW: https://asyncpraw.readthedocs.io.
+See https://praw.readthedocs.io/en/latest/getting_started/multiple_instances.html#discord-bots-and-asynchronous-environments for more info.
+
+2025-11-29 09:55:04,927 [INFO] trend_scanner.scraper: scraper: newspaper extracted 17254 chars from https://caveatscientia.com/scientific-review-of-superfoods-boon-or-bunk/
+2025-11-29 09:55:05,861 [INFO] trend_scanner.scraper: scraper: newspaper extracted 6621 chars from https://nobreakthroughs.substack.com/p/riding-the-autism-bicycle-to-retraction
+2025-11-29 09:55:07,289 [INFO] trend_scanner.scraper: scraper: newspaper extracted 2186 chars from https://dailyexplain.com/2025/11/28/fbi-spends-nearly-1m-redacting-epstein-files-trump-mentions-flagged-in-review/
+2025-11-29 09:55:09,142 [INFO] trend_scanner.scraper: scraper: newspaper extracted 10134 chars from https://www.cnn.com/2025/11/27/health/south-carolina-measles-misinformation-kff-health-news
+2025-11-29 09:55:09,873 [INFO] trend_scanner.scraper: scraper: newspaper extracted 5998 chars from https://www.theguardian.com/technology/2025/nov/27/partisan-x-posts-increase-political-polarisation-among-users-social-media-research
+2025-11-29 09:55:12,890 [INFO] trend_scanner.scraper: scraper: newspaper extracted 8728 chars from https://retractionwatch.com/2025/11/25/meet-the-researcher-aiming-to-halt-use-of-fundamentally-flawed-database-linking-iq-and-nationality/
+2025-11-29 09:55:16,676 [INFO] readability.readability: ruthless removal did not work. 
+2025-11-29 09:55:16,702 [INFO] trend_scanner.scraper: No usable content extracted for https://youtu.be/atbAWMUJxs8?si=McgsCNmare6txU6d
+2025-11-29 09:55:19,809 [INFO] trend_scanner.scraper: scraper: newspaper extracted 2842 chars from https://rudevulture.com/mit-has-built-agent-clones-of-151-million-working-americans-in-order-to-identify-which-jobs-are-most-at-risk/
+2025-11-29 09:55:20,315 [WARNING] trend_scanner.scraper: requests.get failed for https://www.acpjournals.org/doi/10.7326/ANNALS-25-00997: 403 Client Error: Forbidden for url: https://www.acpjournals.org/doi/10.7326/ANNALS-25-00997
+2025-11-29 09:55:20,928 [INFO] trend_scanner.scraper: scraper: readability extracted 8919 chars from https://www.forbes.com/sites/kensilverstein/2025/10/19/uruguays-renewable-charge-a-small-nation-a-big-lesson-for-the-world/
+2025-11-29 09:55:24,280 [INFO] trend_scanner.scraper: scraper: newspaper extracted 3945 chars from https://calfkicker.com/rfk-jr-tried-to-sell-joe-rogans-audience-on-debunked-wifi-fears/
+2025-11-29 09:55:24,280 [INFO] trend_scanner.tools.reddit_scan_tool: Performing batch risk assessment for 2 posts
+2025-11-29 09:55:24,280 [INFO] LiteLLM: 
+LiteLLM completion() model= gemini-2.5-flash; provider = gemini
+2025-11-29 09:55:32,849 [INFO] LiteLLM: Wrapper: Completed Call, calling success_handler
+2025-11-29 09:55:32,849 [INFO] trend_scanner.tools.reddit_scan_tool: Batch risk assessment completed for 2 posts
+2025-11-29 09:55:32,849 [INFO] trend_scanner.tools.reddit_scan_tool: Batch processing: assessed 2 posts in 1 API call
+2025-11-29 09:55:32,849 [INFO] trend_scanner.tools.reddit_scan_tool: Scan summary: Scanned r/skeptic (20 posts), scraped 9 links, found 2 trending posts
+2025-11-29 09:55:32,849 [INFO] trend_scanner.google_agents: Executing parallel task 4/38 with agent 'reddit_scanner'
+2025-11-29 09:55:32,849 [INFO] trend_scanner.google_agents: Agent Reddit Trend Scout executing Reddit scan for r/conspiracytheories
+2025-11-29 09:55:32,849 [INFO] trend_scanner.tools.reddit_scan_tool: Starting to fetch submissions from r/conspiracytheories (limit=20, sort=new)
+2025-11-29 09:55:32,849 [WARNING] praw: It appears that you are using PRAW in an asynchronous environment.
+It is strongly recommended to use Async PRAW: https://asyncpraw.readthedocs.io.
+See https://praw.readthedocs.io/en/latest/getting_started/multiple_instances.html#discord-bots-and-asynchronous-environments for more info.
+
+2025-11-29 09:55:36,148 [INFO] trend_scanner.scraper: scraper: newspaper extracted 1417 chars from https://newrepublic.com/post/203762/trump-fbi-redacted-epstein-files
+2025-11-29 09:55:38,700 [INFO] trend_scanner.scraper: scraper: newspaper extracted 8629 chars from https://www.yahoo.com/news/articles/conspiracy-theorists-russian-propagandists-individuals-193105640.html
+2025-11-29 09:55:39,534 [INFO] trend_scanner.scraper: scraper: newspaper extracted 5654 chars from https://economictimes.indiatimes.com/news/international/us/palantir-co-founder-peter-thiel-and-vice-president-jd-vance-ties-explained-see-companys-expanding-reach-inside-government-programs-allegations-against-it-political-debate-grows-trump-administration-government-data-tools-ai-systems-surveillance-concerns-silicon-valley-political-influence-technology-power-government-contracts-privacy-issues/articleshow/125539208.cms?from=mdr
+2025-11-29 09:55:41,015 [INFO] trend_scanner.scraper: scraper: newspaper extracted 3387 chars from https://www.npr.org/2025/11/23/nx-s1-5618242/texas-haiti-gonave-island-plot
+2025-11-29 09:55:42,705 [INFO] trend_scanner.scraper: scraper: newspaper extracted 584 chars from https://newrepublic.com/post/203562/maga-trolls-elon-musk-x-new-feature
+2025-11-29 09:55:42,708 [INFO] trend_scanner.tools.reddit_scan_tool: Performing batch risk assessment for 1 posts
+2025-11-29 09:55:42,708 [INFO] LiteLLM: 
+LiteLLM completion() model= gemini-2.5-flash; provider = gemini
+2025-11-29 09:55:46,646 [INFO] LiteLLM: Wrapper: Completed Call, calling success_handler
+2025-11-29 09:55:46,646 [INFO] trend_scanner.tools.reddit_scan_tool: Batch risk assessment completed for 1 posts
+2025-11-29 09:55:46,646 [INFO] trend_scanner.tools.reddit_scan_tool: Batch processing: assessed 1 posts in 1 API call
+2025-11-29 09:55:46,646 [INFO] trend_scanner.tools.reddit_scan_tool: Scan summary: Scanned r/conspiracytheories (20 posts), scraped 5 links, found 0 trending posts
+2025-11-29 09:55:46,653 [INFO] trend_scanner.google_agents: Executing parallel task 5/38 with agent 'twitter_scanner'
+2025-11-29 09:55:46,653 [INFO] trend_scanner.google_agents: Agent Twitter/X Trend Scout executing Twitter scan for NupurSharmaBJP (type: user)
+2025-11-29 09:55:46,653 [INFO] trend_scanner.tools.twitter_scan_tool: Starting Twitter scan (type=user, target=NupurSharmaBJP, limit=50)
+2025-11-29 09:55:47,089 [INFO] trend_scanner.tools.twitter_scan_tool: Loaded cookies for fresh client
+2025-11-29 09:55:47,089 [INFO] trend_scanner.tools.twitter_scan_tool: Fetching tweets from user: @NupurSharmaBJP
+2025-11-29 09:55:49,280 [INFO] trend_scanner.tools.twitter_scan_tool: Fetched 20 tweets from @NupurSharmaBJP
+2025-11-29 09:55:49,282 [INFO] trend_scanner.tools.twitter_scan_tool: Performing batch risk assessment for 0 tweets
+2025-11-29 09:55:49,282 [INFO] trend_scanner.tools.twitter_scan_tool: Batch processing: assessed 0 tweets in 1 API call
+2025-11-29 09:55:49,285 [INFO] trend_scanner.tools.twitter_scan_tool: Scan summary: Scanned NupurSharmaBJP (20 tweets, type=user), scraped 0 links, found 0 trending tweets
+2025-11-29 09:55:49,285 [INFO] trend_scanner.google_agents: Executing parallel task 6/38 with agent 'twitter_scanner'
+2025-11-29 09:55:49,285 [INFO] trend_scanner.google_agents: Agent Twitter/X Trend Scout executing Twitter scan for IndianGems_ (type: user)
+2025-11-29 09:55:49,285 [INFO] trend_scanner.tools.twitter_scan_tool: Starting Twitter scan (type=user, target=IndianGems_, limit=50)
+2025-11-29 09:55:49,735 [INFO] trend_scanner.tools.twitter_scan_tool: Loaded cookies for fresh client
+2025-11-29 09:55:49,735 [INFO] trend_scanner.tools.twitter_scan_tool: Fetching tweets from user: @IndianGems_
+2025-11-29 09:55:51,662 [INFO] trend_scanner.tools.twitter_scan_tool: Fetched 18 tweets from @IndianGems_
+2025-11-29 09:55:51,665 [INFO] trend_scanner.tools.twitter_scan_tool: Performing batch risk assessment for 10 tweets
+2025-11-29 09:55:51,665 [INFO] LiteLLM: 
+LiteLLM completion() model= gemini-2.5-flash; provider = gemini
+2025-11-29 09:56:08,837 [INFO] LiteLLM: Wrapper: Completed Call, calling success_handler
+2025-11-29 09:56:08,837 [INFO] trend_scanner.tools.twitter_scan_tool: Batch risk assessment completed for 10 tweets
+2025-11-29 09:56:08,846 [INFO] trend_scanner.tools.twitter_scan_tool: Batch processing: assessed 10 tweets in 1 API call
+2025-11-29 09:56:08,846 [INFO] trend_scanner.tools.twitter_scan_tool: Scan summary: Scanned IndianGems_ (18 tweets, type=user), scraped 0 links, found 5 trending tweets
+2025-11-29 09:56:08,846 [INFO] trend_scanner.google_agents: Executing parallel task 7/38 with agent 'twitter_scanner'
+2025-11-29 09:56:08,846 [INFO] trend_scanner.google_agents: Agent Twitter/X Trend Scout executing Twitter scan for WeDravidiansGurudev (type: user)
+2025-11-29 09:56:08,846 [INFO] trend_scanner.tools.twitter_scan_tool: Starting Twitter scan (type=user, target=WeDravidiansGurudev, limit=50)
+2025-11-29 09:56:09,271 [INFO] trend_scanner.tools.twitter_scan_tool: Loaded cookies for fresh client
+2025-11-29 09:56:09,271 [INFO] trend_scanner.tools.twitter_scan_tool: Fetching tweets from user: @WeDravidiansGurudev
+2025-11-29 09:56:10,767 [ERROR] trend_scanner.tools.twitter_scan_tool: Failed to fetch user tweets: The user does not exist.
+2025-11-29 09:56:10,770 [ERROR] trend_scanner.tools.twitter_scan_tool: Traceback (most recent call last):
+  File "C:\PF\Projects\MumbaiHacks\trend_scanner\tools\twitter_scan_tool.py", line 566, in _run_async
+    user = await client.get_user_by_screen_name(target)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PF\Projects\MumbaiHacks\.venv\Lib\site-packages\twikit\client\client.py", line 1397, in get_user_by_screen_name
+    raise UserNotFound('The user does not exist.')
+twikit.errors.UserNotFound: The user does not exist.
+
+2025-11-29 09:56:10,770 [WARNING] trend_scanner.tools.twitter_scan_tool: No tweets found for target: WeDravidiansGurudev
+2025-11-29 09:56:10,770 [INFO] trend_scanner.google_agents: Executing parallel task 8/38 with agent 'twitter_scanner'
+2025-11-29 09:56:10,770 [INFO] trend_scanner.google_agents: Agent Twitter/X Trend Scout executing Twitter scan for PypAyurved (type: user)
+2025-11-29 09:56:10,770 [INFO] trend_scanner.tools.twitter_scan_tool: Starting Twitter scan (type=user, target=PypAyurved, limit=50)
+2025-11-29 09:56:11,239 [INFO] trend_scanner.tools.twitter_scan_tool: Loaded cookies for fresh client
+2025-11-29 09:56:11,239 [INFO] trend_scanner.tools.twitter_scan_tool: Fetching tweets from user: @PypAyurved
+2025-11-29 09:56:13,583 [INFO] trend_scanner.tools.twitter_scan_tool: Fetched 20 tweets from @PypAyurved
+2025-11-29 09:56:13,583 [INFO] trend_scanner.tools.twitter_scan_tool: Performing batch risk assessment for 1 tweets
+2025-11-29 09:56:13,583 [INFO] LiteLLM: 
+LiteLLM completion() model= gemini-2.5-flash; provider = gemini
+2025-11-29 09:56:20,630 [INFO] LiteLLM: Wrapper: Completed Call, calling success_handler
+2025-11-29 09:56:20,630 [INFO] trend_scanner.tools.twitter_scan_tool: Batch risk assessment completed for 1 tweets
+2025-11-29 09:56:20,630 [INFO] trend_scanner.tools.twitter_scan_tool: Batch processing: assessed 1 tweets in 1 API call
+2025-11-29 09:56:20,630 [INFO] trend_scanner.tools.twitter_scan_tool: Scan summary: Scanned PypAyurved (20 tweets, type=user), scraped 0 links, found 0 trending tweets
+2025-11-29 09:56:20,630 [INFO] trend_scanner.google_agents: Executing parallel task 9/38 with agent 'twitter_scanner'
+2025-11-29 09:56:20,630 [INFO] trend_scanner.google_agents: Agent Twitter/X Trend Scout executing Twitter scan for #CareerGuidance (type: trending)
+2025-11-29 09:56:20,630 [INFO] trend_scanner.tools.twitter_scan_tool: Starting Twitter scan (type=trending, target=#CareerGuidance, limit=50)
+2025-11-29 09:56:21,058 [INFO] trend_scanner.tools.twitter_scan_tool: Loaded cookies for fresh client
+2025-11-29 09:56:21,058 [INFO] trend_scanner.tools.twitter_scan_tool: Searching tweets for: #CareerGuidance
+2025-11-29 09:56:22,509 [INFO] trend_scanner.tools.twitter_scan_tool: Fetched 20 tweets from search (limited to 50)
+2025-11-29 09:56:22,509 [INFO] trend_scanner.tools.twitter_scan_tool: Performing batch risk assessment for 0 tweets
+2025-11-29 09:56:22,509 [INFO] trend_scanner.tools.twitter_scan_tool: Batch processing: assessed 0 tweets in 1 API call
+2025-11-29 09:56:22,509 [INFO] trend_scanner.tools.twitter_scan_tool: Scan summary: Scanned #CareerGuidance (20 tweets, type=trending), scraped 0 links, found 0 trending tweets
+2025-11-29 09:56:22,509 [INFO] trend_scanner.google_agents: Executing parallel task 10/38 with agent 'twitter_scanner'
+2025-11-29 09:56:22,509 [INFO] trend_scanner.google_agents: Agent Twitter/X Trend Scout executing Twitter scan for #GurukulShiksha (type: trending)
+2025-11-29 09:56:22,509 [INFO] trend_scanner.tools.twitter_scan_tool: Starting Twitter scan (type=trending, target=#GurukulShiksha, limit=50)
+2025-11-29 09:56:22,920 [INFO] trend_scanner.tools.twitter_scan_tool: Loaded cookies for fresh client
+2025-11-29 09:56:22,920 [INFO] trend_scanner.tools.twitter_scan_tool: Searching tweets for: #GurukulShiksha
+2025-11-29 09:56:24,617 [INFO] trend_scanner.tools.twitter_scan_tool: Fetched 17 tweets from search (limited to 50)
+2025-11-29 09:56:24,617 [INFO] trend_scanner.tools.twitter_scan_tool: Performing batch risk assessment for 0 tweets
+2025-11-29 09:56:24,617 [INFO] trend_scanner.tools.twitter_scan_tool: Batch processing: assessed 0 tweets in 1 API call
+2025-11-29 09:56:24,617 [INFO] trend_scanner.tools.twitter_scan_tool: Scan summary: Scanned #GurukulShiksha (17 tweets, type=trending), scraped 0 links, found 0 trending tweets
+2025-11-29 09:56:24,617 [INFO] trend_scanner.google_agents: Executing parallel task 11/38 with agent 'twitter_scanner'
+2025-11-29 09:56:24,617 [INFO] trend_scanner.google_agents: Agent Twitter/X Trend Scout executing Twitter scan for Holistic Learning (type: trending)
+2025-11-29 09:56:24,617 [INFO] trend_scanner.tools.twitter_scan_tool: Starting Twitter scan (type=trending, target=Holistic Learning, limit=50)
+2025-11-29 09:56:25,031 [INFO] trend_scanner.tools.twitter_scan_tool: Loaded cookies for fresh client
+2025-11-29 09:56:25,031 [INFO] trend_scanner.tools.twitter_scan_tool: Searching tweets for: Holistic Learning
+2025-11-29 09:56:26,355 [INFO] trend_scanner.tools.twitter_scan_tool: Fetched 17 tweets from search (limited to 50)
+2025-11-29 09:56:26,355 [INFO] trend_scanner.tools.twitter_scan_tool: Performing batch risk assessment for 0 tweets
+2025-11-29 09:56:26,355 [INFO] trend_scanner.tools.twitter_scan_tool: Batch processing: assessed 0 tweets in 1 API call
+2025-11-29 09:56:26,355 [INFO] trend_scanner.tools.twitter_scan_tool: Scan summary: Scanned Holistic Learning (17 tweets, type=trending), scraped 0 links, found 0 trending tweets
+2025-11-29 09:56:26,355 [INFO] trend_scanner.google_agents: Executing parallel task 12/38 with agent 'twitter_scanner'
+2025-11-29 09:56:26,355 [INFO] trend_scanner.google_agents: Agent Twitter/X Trend Scout executing Twitter scan for Sanatan Sanskriti (type: trending)
+2025-11-29 09:56:26,355 [INFO] trend_scanner.tools.twitter_scan_tool: Starting Twitter scan (type=trending, target=Sanatan Sanskriti, limit=50)
+2025-11-29 09:56:26,806 [INFO] trend_scanner.tools.twitter_scan_tool: Loaded cookies for fresh client
+2025-11-29 09:56:26,806 [INFO] trend_scanner.tools.twitter_scan_tool: Searching tweets for: Sanatan Sanskriti
+2025-11-29 09:56:28,115 [INFO] trend_scanner.tools.twitter_scan_tool: Fetched 17 tweets from search (limited to 50)
+2025-11-29 09:56:28,115 [INFO] trend_scanner.tools.twitter_scan_tool: Performing batch risk assessment for 0 tweets
+2025-11-29 09:56:28,115 [INFO] trend_scanner.tools.twitter_scan_tool: Batch processing: assessed 0 tweets in 1 API call
+2025-11-29 09:56:28,115 [INFO] trend_scanner.tools.twitter_scan_tool: Scan summary: Scanned Sanatan Sanskriti (17 tweets, type=trending), scraped 0 links, found 0 trending tweets
+2025-11-29 09:56:28,115 [INFO] trend_scanner.google_agents: Executing parallel task 13/38 with agent 'twitter_scanner'
+2025-11-29 09:56:28,121 [INFO] trend_scanner.google_agents: Agent Twitter/X Trend Scout executing Twitter scan for #यथार्थ_गीता_ज्ञान (type: trending)
+2025-11-29 09:56:28,121 [INFO] trend_scanner.tools.twitter_scan_tool: Starting Twitter scan (type=trending, target=#यथार्थ_गीता_ज्ञान, limit=50)
+2025-11-29 09:56:28,576 [INFO] trend_scanner.tools.twitter_scan_tool: Loaded cookies for fresh client
+2025-11-29 09:56:28,576 [INFO] trend_scanner.tools.twitter_scan_tool: Searching tweets for: #यथार्थ_गीता_ज्ञान
+2025-11-29 09:56:29,287 [WARNING] trend_scanner.tools.twitter_scan_tool: Twitter returned 404 Not Found for search '#यथार्थ_गीता_ज्ञान' - no results available
+2025-11-29 09:56:29,287 [WARNING] trend_scanner.tools.twitter_scan_tool: No tweets found for target: #यथार्थ_गीता_ज्ञान
+2025-11-29 09:56:29,287 [INFO] trend_scanner.google_agents: Executing parallel task 14/38 with agent 'twitter_scanner'
+2025-11-29 09:56:29,287 [INFO] trend_scanner.google_agents: Agent Twitter/X Trend Scout executing Twitter scan for #GodMorningSaturday (type: trending)
+2025-11-29 09:56:29,287 [INFO] trend_scanner.tools.twitter_scan_tool: Starting Twitter scan (type=trending, target=#GodMorningSaturday, limit=50)
+2025-11-29 09:56:29,723 [INFO] trend_scanner.tools.twitter_scan_tool: Loaded cookies for fresh client
+2025-11-29 09:56:29,723 [INFO] trend_scanner.tools.twitter_scan_tool: Searching tweets for: #GodMorningSaturday
+2025-11-29 09:56:31,494 [INFO] trend_scanner.tools.twitter_scan_tool: Fetched 17 tweets from search (limited to 50)
+2025-11-29 09:56:31,494 [INFO] trend_scanner.tools.twitter_scan_tool: Performing batch risk assessment for 0 tweets
+2025-11-29 09:56:31,494 [INFO] trend_scanner.tools.twitter_scan_tool: Batch processing: assessed 0 tweets in 1 API call
+2025-11-29 09:56:31,496 [INFO] trend_scanner.tools.twitter_scan_tool: Scan summary: Scanned #GodMorningSaturday (17 tweets, type=trending), scraped 0 links, found 0 trending tweets
+2025-11-29 09:56:31,496 [INFO] trend_scanner.google_agents: Executing parallel task 15/38 with agent 'twitter_scanner'
+2025-11-29 09:56:31,496 [INFO] trend_scanner.google_agents: Agent Twitter/X Trend Scout executing Twitter scan for शनि देव (type: trending)
+2025-11-29 09:56:31,496 [INFO] trend_scanner.tools.twitter_scan_tool: Starting Twitter scan (type=trending, target=शनि देव, limit=50)
+2025-11-29 09:56:31,915 [INFO] trend_scanner.tools.twitter_scan_tool: Loaded cookies for fresh client
+2025-11-29 09:56:31,915 [INFO] trend_scanner.tools.twitter_scan_tool: Searching tweets for: शनि देव
+2025-11-29 09:56:32,918 [WARNING] trend_scanner.tools.twitter_scan_tool: Twitter returned 404 Not Found for search 'शनि देव' - no results available
+2025-11-29 09:56:32,918 [WARNING] trend_scanner.tools.twitter_scan_tool: No tweets found for target: शनि देव
+2025-11-29 09:56:32,918 [INFO] trend_scanner.google_agents: Executing parallel task 16/38 with agent 'twitter_scanner'
+2025-11-29 09:56:32,918 [INFO] trend_scanner.google_agents: Agent Twitter/X Trend Scout executing Twitter scan for Saint Gurmeet Ram Rahim Singh (type: trending)
+2025-11-29 09:56:32,918 [INFO] trend_scanner.tools.twitter_scan_tool: Starting Twitter scan (type=trending, target=Saint Gurmeet Ram Rahim Singh, limit=50)
+2025-11-29 09:56:33,358 [INFO] trend_scanner.tools.twitter_scan_tool: Loaded cookies for fresh client
+2025-11-29 09:56:33,358 [INFO] trend_scanner.tools.twitter_scan_tool: Searching tweets for: Saint Gurmeet Ram Rahim Singh
+2025-11-29 09:56:35,296 [INFO] trend_scanner.tools.twitter_scan_tool: Fetched 20 tweets from search (limited to 50)
+2025-11-29 09:56:35,296 [INFO] trend_scanner.tools.twitter_scan_tool: Performing batch risk assessment for 0 tweets
+2025-11-29 09:56:35,303 [INFO] trend_scanner.tools.twitter_scan_tool: Batch processing: assessed 0 tweets in 1 API call
+2025-11-29 09:56:35,303 [INFO] trend_scanner.tools.twitter_scan_tool: Scan summary: Scanned Saint Gurmeet Ram Rahim Singh (20 tweets, type=trending), scraped 0 links, found 0 trending tweets
+2025-11-29 09:56:35,304 [INFO] trend_scanner.google_agents: Executing parallel task 17/38 with agent 'twitter_scanner'
+2025-11-29 09:56:35,304 [INFO] trend_scanner.google_agents: Agent Twitter/X Trend Scout executing Twitter scan for Sant Shri Asharamji Bapu (type: trending)
+2025-11-29 09:56:35,304 [INFO] trend_scanner.tools.twitter_scan_tool: Starting Twitter scan (type=trending, target=Sant Shri Asharamji Bapu, limit=50)
+2025-11-29 09:56:35,730 [INFO] trend_scanner.tools.twitter_scan_tool: Loaded cookies for fresh client
+2025-11-29 09:56:35,730 [INFO] trend_scanner.tools.twitter_scan_tool: Searching tweets for: Sant Shri Asharamji Bapu
+2025-11-29 09:56:37,601 [INFO] trend_scanner.tools.twitter_scan_tool: Fetched 18 tweets from search (limited to 50)
+2025-11-29 09:56:37,601 [INFO] trend_scanner.tools.twitter_scan_tool: Performing batch risk assessment for 0 tweets
+2025-11-29 09:56:37,601 [INFO] trend_scanner.tools.twitter_scan_tool: Batch processing: assessed 0 tweets in 1 API call
+2025-11-29 09:56:37,601 [INFO] trend_scanner.tools.twitter_scan_tool: Scan summary: Scanned Sant Shri Asharamji Bapu (18 tweets, type=trending), scraped 0 links, found 0 trending tweets
+2025-11-29 09:56:37,601 [INFO] trend_scanner.google_agents: Executing parallel task 18/38 with agent 'twitter_scanner'
+2025-11-29 09:56:37,601 [INFO] trend_scanner.google_agents: Agent Twitter/X Trend Scout executing Twitter scan for Sant Rampal Ji Maharaj (type: trending)
+2025-11-29 09:56:37,601 [INFO] trend_scanner.tools.twitter_scan_tool: Starting Twitter scan (type=trending, target=Sant Rampal Ji Maharaj, limit=50)
+2025-11-29 09:56:38,007 [INFO] trend_scanner.tools.twitter_scan_tool: Loaded cookies for fresh client
+2025-11-29 09:56:38,007 [INFO] trend_scanner.tools.twitter_scan_tool: Searching tweets for: Sant Rampal Ji Maharaj
+2025-11-29 09:56:39,265 [INFO] trend_scanner.tools.twitter_scan_tool: Fetched 12 tweets from search (limited to 50)
+2025-11-29 09:56:39,265 [INFO] trend_scanner.tools.twitter_scan_tool: Performing batch risk assessment for 0 tweets
+2025-11-29 09:56:39,265 [INFO] trend_scanner.tools.twitter_scan_tool: Batch processing: assessed 0 tweets in 1 API call
+2025-11-29 09:56:39,265 [INFO] trend_scanner.tools.twitter_scan_tool: Scan summary: Scanned Sant Rampal Ji Maharaj (12 tweets, type=trending), scraped 0 links, found 0 trending tweets
+2025-11-29 09:56:39,265 [INFO] trend_scanner.google_agents: Executing parallel task 19/38 with agent 'twitter_scanner'
+2025-11-29 09:56:39,265 [INFO] trend_scanner.google_agents: Agent Twitter/X Trend Scout executing Twitter scan for #JRDTata (type: trending)
+2025-11-29 09:56:39,265 [INFO] trend_scanner.tools.twitter_scan_tool: Starting Twitter scan (type=trending, target=#JRDTata, limit=50)
+2025-11-29 09:56:39,682 [INFO] trend_scanner.tools.twitter_scan_tool: Loaded cookies for fresh client
+2025-11-29 09:56:39,682 [INFO] trend_scanner.tools.twitter_scan_tool: Searching tweets for: #JRDTata
+2025-11-29 09:56:41,128 [INFO] trend_scanner.tools.twitter_scan_tool: Fetched 20 tweets from search (limited to 50)
+2025-11-29 09:56:41,128 [INFO] trend_scanner.tools.twitter_scan_tool: Performing batch risk assessment for 0 tweets
+2025-11-29 09:56:41,128 [INFO] trend_scanner.tools.twitter_scan_tool: Batch processing: assessed 0 tweets in 1 API call
+2025-11-29 09:56:41,128 [INFO] trend_scanner.tools.twitter_scan_tool: Scan summary: Scanned #JRDTata (20 tweets, type=trending), scraped 0 links, found 0 trending tweets
+2025-11-29 09:56:41,128 [INFO] trend_scanner.google_agents: Executing parallel task 20/38 with agent 'twitter_scanner'
+2025-11-29 09:56:41,128 [INFO] trend_scanner.google_agents: Agent Twitter/X Trend Scout executing Twitter scan for Thanksgiving (type: trending)
+2025-11-29 09:56:41,128 [INFO] trend_scanner.tools.twitter_scan_tool: Starting Twitter scan (type=trending, target=Thanksgiving, limit=50)
+2025-11-29 09:56:41,546 [INFO] trend_scanner.tools.twitter_scan_tool: Loaded cookies for fresh client
+2025-11-29 09:56:41,546 [INFO] trend_scanner.tools.twitter_scan_tool: Searching tweets for: Thanksgiving
+2025-11-29 09:56:42,996 [INFO] trend_scanner.tools.twitter_scan_tool: Fetched 20 tweets from search (limited to 50)
+2025-11-29 09:56:42,998 [INFO] trend_scanner.tools.twitter_scan_tool: Performing batch risk assessment for 0 tweets
+2025-11-29 09:56:42,998 [INFO] trend_scanner.tools.twitter_scan_tool: Batch processing: assessed 0 tweets in 1 API call
+2025-11-29 09:56:42,998 [INFO] trend_scanner.tools.twitter_scan_tool: Scan summary: Scanned Thanksgiving (20 tweets, type=trending), scraped 0 links, found 0 trending tweets
+2025-11-29 09:56:42,998 [INFO] trend_scanner.google_agents: Executing parallel task 21/38 with agent 'twitter_scanner'
+2025-11-29 09:56:42,998 [INFO] trend_scanner.google_agents: Agent Twitter/X Trend Scout executing Twitter scan for भारत रत्न (type: trending)
+2025-11-29 09:56:42,998 [INFO] trend_scanner.tools.twitter_scan_tool: Starting Twitter scan (type=trending, target=भारत रत्न, limit=50)
+2025-11-29 09:56:43,435 [INFO] trend_scanner.tools.twitter_scan_tool: Loaded cookies for fresh client
+2025-11-29 09:56:43,435 [INFO] trend_scanner.tools.twitter_scan_tool: Searching tweets for: भारत रत्न
+2025-11-29 09:56:45,206 [INFO] trend_scanner.tools.twitter_scan_tool: Fetched 19 tweets from search (limited to 50)
+2025-11-29 09:56:45,206 [INFO] trend_scanner.tools.twitter_scan_tool: Performing batch risk assessment for 0 tweets
+2025-11-29 09:56:45,206 [INFO] trend_scanner.tools.twitter_scan_tool: Batch processing: assessed 0 tweets in 1 API call
+2025-11-29 09:56:45,206 [INFO] trend_scanner.tools.twitter_scan_tool: Scan summary: Scanned भारत रत्न (19 tweets, type=trending), scraped 0 links, found 0 trending tweets
+2025-11-29 09:56:45,208 [INFO] trend_scanner.google_agents: Executing parallel task 22/38 with agent 'twitter_scanner'
+2025-11-29 09:56:45,208 [INFO] trend_scanner.google_agents: Agent Twitter/X Trend Scout executing Twitter scan for डेरा सच्चा सौदा (type: trending)
+2025-11-29 09:56:45,209 [INFO] trend_scanner.tools.twitter_scan_tool: Starting Twitter scan (type=trending, target=डेरा सच्चा सौदा, limit=50)
+2025-11-29 09:56:45,650 [INFO] trend_scanner.tools.twitter_scan_tool: Loaded cookies for fresh client
+2025-11-29 09:56:45,650 [INFO] trend_scanner.tools.twitter_scan_tool: Searching tweets for: डेरा सच्चा सौदा
+2025-11-29 09:56:47,426 [INFO] trend_scanner.tools.twitter_scan_tool: Fetched 20 tweets from search (limited to 50)
+2025-11-29 09:56:47,426 [INFO] trend_scanner.tools.twitter_scan_tool: Performing batch risk assessment for 0 tweets
+2025-11-29 09:56:47,426 [INFO] trend_scanner.tools.twitter_scan_tool: Batch processing: assessed 0 tweets in 1 API call
+2025-11-29 09:56:47,433 [INFO] trend_scanner.tools.twitter_scan_tool: Scan summary: Scanned डेरा सच्चा सौदा (20 tweets, type=trending), scraped 0 links, found 0 trending tweets
+2025-11-29 09:56:47,433 [INFO] trend_scanner.google_agents: Executing parallel task 23/38 with agent 'twitter_scanner'
+2025-11-29 09:56:47,433 [INFO] trend_scanner.google_agents: Agent Twitter/X Trend Scout executing Twitter scan for श्री हनुमान (type: trending)
+2025-11-29 09:56:47,433 [INFO] trend_scanner.tools.twitter_scan_tool: Starting Twitter scan (type=trending, target=श्री हनुमान, limit=50)
+2025-11-29 09:56:47,852 [INFO] trend_scanner.tools.twitter_scan_tool: Loaded cookies for fresh client
+2025-11-29 09:56:47,852 [INFO] trend_scanner.tools.twitter_scan_tool: Searching tweets for: श्री हनुमान
+2025-11-29 09:56:49,096 [INFO] trend_scanner.tools.twitter_scan_tool: Fetched 19 tweets from search (limited to 50)
+2025-11-29 09:56:49,096 [INFO] trend_scanner.tools.twitter_scan_tool: Performing batch risk assessment for 0 tweets
+2025-11-29 09:56:49,096 [INFO] trend_scanner.tools.twitter_scan_tool: Batch processing: assessed 0 tweets in 1 API call
+2025-11-29 09:56:49,096 [INFO] trend_scanner.tools.twitter_scan_tool: Scan summary: Scanned श्री हनुमान (19 tweets, type=trending), scraped 0 links, found 0 trending tweets
+2025-11-29 09:56:49,096 [INFO] trend_scanner.google_agents: Executing parallel task 24/38 with agent 'twitter_scanner'
+2025-11-29 09:56:49,108 [INFO] trend_scanner.google_agents: Agent Twitter/X Trend Scout executing Twitter scan for श्री राम (type: trending)
+2025-11-29 09:56:49,108 [INFO] trend_scanner.tools.twitter_scan_tool: Starting Twitter scan (type=trending, target=श्री राम, limit=50)
+2025-11-29 09:56:49,534 [INFO] trend_scanner.tools.twitter_scan_tool: Loaded cookies for fresh client
+2025-11-29 09:56:49,534 [INFO] trend_scanner.tools.twitter_scan_tool: Searching tweets for: श्री राम
+2025-11-29 09:56:51,419 [INFO] trend_scanner.tools.twitter_scan_tool: Fetched 20 tweets from search (limited to 50)
+2025-11-29 09:56:51,419 [INFO] trend_scanner.tools.twitter_scan_tool: Performing batch risk assessment for 0 tweets
+2025-11-29 09:56:51,419 [INFO] trend_scanner.tools.twitter_scan_tool: Batch processing: assessed 0 tweets in 1 API call
+2025-11-29 09:56:51,419 [INFO] trend_scanner.tools.twitter_scan_tool: Scan summary: Scanned श्री राम (20 tweets, type=trending), scraped 0 links, found 0 trending tweets
+2025-11-29 09:56:51,419 [INFO] trend_scanner.google_agents: Executing parallel task 25/38 with agent 'twitter_scanner'
+2025-11-29 09:56:51,419 [INFO] trend_scanner.google_agents: Agent Twitter/X Trend Scout executing Twitter scan for गुरुकुल शिक्षा (type: trending)
+2025-11-29 09:56:51,426 [INFO] trend_scanner.tools.twitter_scan_tool: Starting Twitter scan (type=trending, target=गुरुकुल शिक्षा, limit=50)
+2025-11-29 09:56:51,895 [INFO] trend_scanner.tools.twitter_scan_tool: Loaded cookies for fresh client
+2025-11-29 09:56:51,895 [INFO] trend_scanner.tools.twitter_scan_tool: Searching tweets for: गुरुकुल शिक्षा
+2025-11-29 09:56:52,787 [WARNING] trend_scanner.tools.twitter_scan_tool: Twitter returned 404 Not Found for search 'गुरुकुल शिक्षा' - no results available
+2025-11-29 09:56:52,787 [WARNING] trend_scanner.tools.twitter_scan_tool: No tweets found for target: गुरुकुल शिक्षा
+2025-11-29 09:56:52,787 [INFO] trend_scanner.google_agents: Executing parallel task 26/38 with agent 'twitter_scanner'
+2025-11-29 09:56:52,787 [INFO] trend_scanner.google_agents: Agent Twitter/X Trend Scout executing Twitter scan for विशेषज्ञ स्वयंसेवक (type: trending)
+2025-11-29 09:56:52,787 [INFO] trend_scanner.tools.twitter_scan_tool: Starting Twitter scan (type=trending, target=विशेषज्ञ स्वयंसेवक, limit=50)
+2025-11-29 09:56:53,221 [INFO] trend_scanner.tools.twitter_scan_tool: Loaded cookies for fresh client
+2025-11-29 09:56:53,221 [INFO] trend_scanner.tools.twitter_scan_tool: Searching tweets for: विशेषज्ञ स्वयंसेवक
+2025-11-29 09:56:55,077 [INFO] trend_scanner.tools.twitter_scan_tool: Fetched 19 tweets from search (limited to 50)
+2025-11-29 09:56:55,077 [INFO] trend_scanner.tools.twitter_scan_tool: Performing batch risk assessment for 0 tweets
+2025-11-29 09:56:55,077 [INFO] trend_scanner.tools.twitter_scan_tool: Batch processing: assessed 0 tweets in 1 API call
+2025-11-29 09:56:55,077 [INFO] trend_scanner.tools.twitter_scan_tool: Scan summary: Scanned विशेषज्ञ स्वयंसेवक (19 tweets, type=trending), scraped 0 links, found 0 trending tweets
+2025-11-29 09:56:55,077 [INFO] trend_scanner.google_agents: Executing parallel task 27/38 with agent 'twitter_scanner'
+2025-11-29 09:56:55,077 [INFO] trend_scanner.google_agents: Agent Twitter/X Trend Scout executing Twitter scan for महान समाज (type: trending)
+2025-11-29 09:56:55,077 [INFO] trend_scanner.tools.twitter_scan_tool: Starting Twitter scan (type=trending, target=महान समाज, limit=50)
+2025-11-29 09:56:55,565 [INFO] trend_scanner.tools.twitter_scan_tool: Loaded cookies for fresh client
+2025-11-29 09:56:55,565 [INFO] trend_scanner.tools.twitter_scan_tool: Searching tweets for: महान समाज
+2025-11-29 09:56:56,768 [INFO] trend_scanner.tools.twitter_scan_tool: Fetched 17 tweets from search (limited to 50)
+2025-11-29 09:56:56,768 [INFO] trend_scanner.tools.twitter_scan_tool: Performing batch risk assessment for 0 tweets
+2025-11-29 09:56:56,768 [INFO] trend_scanner.tools.twitter_scan_tool: Batch processing: assessed 0 tweets in 1 API call
+2025-11-29 09:56:56,768 [INFO] trend_scanner.tools.twitter_scan_tool: Scan summary: Scanned महान समाज (17 tweets, type=trending), scraped 0 links, found 0 trending tweets
+2025-11-29 09:56:56,768 [INFO] trend_scanner.google_agents: Executing parallel task 28/38 with agent 'twitter_scanner'
+2025-11-29 09:56:56,768 [INFO] trend_scanner.google_agents: Agent Twitter/X Trend Scout executing Twitter scan for पवित्र गीता (type: trending)
+2025-11-29 09:56:56,768 [INFO] trend_scanner.tools.twitter_scan_tool: Starting Twitter scan (type=trending, target=पवित्र गीता, limit=50)
+2025-11-29 09:56:57,176 [INFO] trend_scanner.tools.twitter_scan_tool: Loaded cookies for fresh client
+2025-11-29 09:56:57,176 [INFO] trend_scanner.tools.twitter_scan_tool: Searching tweets for: पवित्र गीता
+2025-11-29 09:56:58,625 [INFO] trend_scanner.tools.twitter_scan_tool: Fetched 11 tweets from search (limited to 50)
+2025-11-29 09:56:58,625 [INFO] trend_scanner.tools.twitter_scan_tool: Performing batch risk assessment for 0 tweets
+2025-11-29 09:56:58,627 [INFO] trend_scanner.tools.twitter_scan_tool: Batch processing: assessed 0 tweets in 1 API call
+2025-11-29 09:56:58,627 [INFO] trend_scanner.tools.twitter_scan_tool: Scan summary: Scanned पवित्र गीता (11 tweets, type=trending), scraped 0 links, found 0 trending tweets
+2025-11-29 09:56:58,627 [INFO] trend_scanner.google_agents: Executing parallel task 29/38 with agent 'twitter_scanner'
+2025-11-29 09:56:58,627 [INFO] trend_scanner.google_agents: Agent Twitter/X Trend Scout executing Twitter scan for श्री जितिन प्रसाद (type: trending)
+2025-11-29 09:56:58,629 [INFO] trend_scanner.tools.twitter_scan_tool: Starting Twitter scan (type=trending, target=श्री जितिन प्रसाद, limit=50)
+2025-11-29 09:56:59,046 [INFO] trend_scanner.tools.twitter_scan_tool: Loaded cookies for fresh client
+2025-11-29 09:56:59,046 [INFO] trend_scanner.tools.twitter_scan_tool: Searching tweets for: श्री जितिन प्रसाद
+2025-11-29 09:57:00,709 [INFO] trend_scanner.tools.twitter_scan_tool: Fetched 20 tweets from search (limited to 50)
+2025-11-29 09:57:00,709 [INFO] trend_scanner.tools.twitter_scan_tool: Performing batch risk assessment for 0 tweets
+2025-11-29 09:57:00,709 [INFO] trend_scanner.tools.twitter_scan_tool: Batch processing: assessed 0 tweets in 1 API call
+2025-11-29 09:57:00,709 [INFO] trend_scanner.tools.twitter_scan_tool: Scan summary: Scanned श्री जितिन प्रसाद (20 tweets, type=trending), scraped 0 links, found 0 trending tweets
+2025-11-29 09:57:00,709 [INFO] trend_scanner.google_agents: Executing parallel task 30/38 with agent 'twitter_scanner'
+2025-11-29 09:57:00,709 [INFO] trend_scanner.google_agents: Agent Twitter/X Trend Scout executing Twitter scan for कैप्टन गुरबचन सिंह सलारिया (type: trending)
+2025-11-29 09:57:00,709 [INFO] trend_scanner.tools.twitter_scan_tool: Starting Twitter scan (type=trending, target=कैप्टन गुरबचन सिंह सलारिया, limit=50)
+2025-11-29 09:57:01,127 [INFO] trend_scanner.tools.twitter_scan_tool: Loaded cookies for fresh client
+2025-11-29 09:57:01,127 [INFO] trend_scanner.tools.twitter_scan_tool: Searching tweets for: कैप्टन गुरबचन सिंह सलारिया
+2025-11-29 09:57:02,965 [INFO] trend_scanner.tools.twitter_scan_tool: Fetched 20 tweets from search (limited to 50)
+2025-11-29 09:57:02,965 [INFO] trend_scanner.tools.twitter_scan_tool: Performing batch risk assessment for 0 tweets
+2025-11-29 09:57:02,965 [INFO] trend_scanner.tools.twitter_scan_tool: Batch processing: assessed 0 tweets in 1 API call
+2025-11-29 09:57:02,965 [INFO] trend_scanner.tools.twitter_scan_tool: Scan summary: Scanned कैप्टन गुरबचन सिंह सलारिया (20 tweets, type=trending), scraped 0 links, found 0 trending tweets
+2025-11-29 09:57:02,965 [INFO] trend_scanner.google_agents: Executing parallel task 31/38 with agent 'twitter_scanner'
+2025-11-29 09:57:02,965 [INFO] trend_scanner.google_agents: Agent Twitter/X Trend Scout executing Twitter scan for 8.2% GDP (type: trending)
+2025-11-29 09:57:02,976 [INFO] trend_scanner.tools.twitter_scan_tool: Starting Twitter scan (type=trending, target=8.2% GDP, limit=50)
+2025-11-29 09:57:03,415 [INFO] trend_scanner.tools.twitter_scan_tool: Loaded cookies for fresh client
+2025-11-29 09:57:03,415 [INFO] trend_scanner.tools.twitter_scan_tool: Searching tweets for: 8.2% GDP
+2025-11-29 09:57:04,865 [INFO] trend_scanner.tools.twitter_scan_tool: Fetched 19 tweets from search (limited to 50)
+2025-11-29 09:57:04,865 [INFO] trend_scanner.tools.twitter_scan_tool: Performing batch risk assessment for 0 tweets
+2025-11-29 09:57:04,865 [INFO] trend_scanner.tools.twitter_scan_tool: Batch processing: assessed 0 tweets in 1 API call
+2025-11-29 09:57:04,865 [INFO] trend_scanner.tools.twitter_scan_tool: Scan summary: Scanned 8.2% GDP (19 tweets, type=trending), scraped 0 links, found 0 trending tweets
+2025-11-29 09:57:04,865 [INFO] trend_scanner.google_agents: Executing parallel task 32/38 with agent 'twitter_scanner'
+2025-11-29 09:57:04,865 [INFO] trend_scanner.google_agents: Agent Twitter/X Trend Scout executing Twitter scan for परमवीर चक्र (type: trending)
+2025-11-29 09:57:04,865 [INFO] trend_scanner.tools.twitter_scan_tool: Starting Twitter scan (type=trending, target=परमवीर चक्र, limit=50)
+2025-11-29 09:57:05,310 [INFO] trend_scanner.tools.twitter_scan_tool: Loaded cookies for fresh client
+2025-11-29 09:57:05,310 [INFO] trend_scanner.tools.twitter_scan_tool: Searching tweets for: परमवीर चक्र
+2025-11-29 09:57:06,878 [INFO] trend_scanner.tools.twitter_scan_tool: Fetched 20 tweets from search (limited to 50)
+2025-11-29 09:57:06,878 [INFO] trend_scanner.tools.twitter_scan_tool: Performing batch risk assessment for 0 tweets
+2025-11-29 09:57:06,878 [INFO] trend_scanner.tools.twitter_scan_tool: Batch processing: assessed 0 tweets in 1 API call
+2025-11-29 09:57:06,879 [INFO] trend_scanner.tools.twitter_scan_tool: Scan summary: Scanned परमवीर चक्र (20 tweets, type=trending), scraped 0 links, found 0 trending tweets
+2025-11-29 09:57:06,879 [INFO] trend_scanner.google_agents: Executing parallel task 33/38 with agent 'twitter_scanner'
+2025-11-29 09:57:06,879 [INFO] trend_scanner.google_agents: Agent Twitter/X Trend Scout executing Twitter scan for आधुनिक शिक्षा (type: trending)
+2025-11-29 09:57:06,880 [INFO] trend_scanner.tools.twitter_scan_tool: Starting Twitter scan (type=trending, target=आधुनिक शिक्षा, limit=50)
+2025-11-29 09:57:07,296 [INFO] trend_scanner.tools.twitter_scan_tool: Loaded cookies for fresh client
+2025-11-29 09:57:07,296 [INFO] trend_scanner.tools.twitter_scan_tool: Searching tweets for: आधुनिक शिक्षा
+2025-11-29 09:57:08,888 [INFO] trend_scanner.tools.twitter_scan_tool: Fetched 15 tweets from search (limited to 50)
+2025-11-29 09:57:08,888 [INFO] trend_scanner.tools.twitter_scan_tool: Performing batch risk assessment for 0 tweets
+2025-11-29 09:57:08,889 [INFO] trend_scanner.tools.twitter_scan_tool: Batch processing: assessed 0 tweets in 1 API call
+2025-11-29 09:57:08,889 [INFO] trend_scanner.tools.twitter_scan_tool: Scan summary: Scanned आधुनिक शिक्षा (15 tweets, type=trending), scraped 0 links, found 0 trending tweets
+2025-11-29 09:57:08,890 [INFO] trend_scanner.google_agents: Executing parallel task 34/38 with agent 'twitter_scanner'
+2025-11-29 09:57:08,890 [INFO] trend_scanner.google_agents: Agent Twitter/X Trend Scout executing Twitter scan for ARMY Protect The 8thDaesang (type: trending)
+2025-11-29 09:57:08,891 [INFO] trend_scanner.tools.twitter_scan_tool: Starting Twitter scan (type=trending, target=ARMY Protect The 8thDaesang, limit=50)
+2025-11-29 09:57:09,326 [INFO] trend_scanner.tools.twitter_scan_tool: Loaded cookies for fresh client
+2025-11-29 09:57:09,326 [INFO] trend_scanner.tools.twitter_scan_tool: Searching tweets for: ARMY Protect The 8thDaesang
+2025-11-29 09:57:10,676 [INFO] trend_scanner.tools.twitter_scan_tool: Fetched 13 tweets from search (limited to 50)
+2025-11-29 09:57:10,680 [INFO] trend_scanner.tools.twitter_scan_tool: Performing batch risk assessment for 0 tweets
+2025-11-29 09:57:10,680 [INFO] trend_scanner.tools.twitter_scan_tool: Batch processing: assessed 0 tweets in 1 API call
+2025-11-29 09:57:10,680 [INFO] trend_scanner.tools.twitter_scan_tool: Scan summary: Scanned ARMY Protect The 8thDaesang (13 tweets, type=trending), scraped 0 links, found 0 trending tweets
+2025-11-29 09:57:10,680 [INFO] trend_scanner.google_agents: Executing parallel task 35/38 with agent 'twitter_scanner'
+2025-11-29 09:57:10,680 [INFO] trend_scanner.google_agents: Agent Twitter/X Trend Scout executing Twitter scan for adityabirla sunlifeinsurance (type: trending)
+2025-11-29 09:57:10,680 [INFO] trend_scanner.tools.twitter_scan_tool: Starting Twitter scan (type=trending, target=adityabirla sunlifeinsurance, limit=50)
+2025-11-29 09:57:11,108 [INFO] trend_scanner.tools.twitter_scan_tool: Loaded cookies for fresh client
+2025-11-29 09:57:11,108 [INFO] trend_scanner.tools.twitter_scan_tool: Searching tweets for: adityabirla sunlifeinsurance
+2025-11-29 09:57:12,900 [INFO] trend_scanner.tools.twitter_scan_tool: Fetched 20 tweets from search (limited to 50)
+2025-11-29 09:57:12,908 [INFO] trend_scanner.tools.twitter_scan_tool: Performing batch risk assessment for 1 tweets
+2025-11-29 09:57:12,908 [INFO] LiteLLM: 
+LiteLLM completion() model= gemini-2.5-flash; provider = gemini
+2025-11-29 09:57:19,876 [INFO] LiteLLM: Wrapper: Completed Call, calling success_handler
+2025-11-29 09:57:19,879 [INFO] trend_scanner.tools.twitter_scan_tool: Batch risk assessment completed for 1 tweets
+2025-11-29 09:57:19,880 [INFO] trend_scanner.tools.twitter_scan_tool: Batch processing: assessed 1 tweets in 1 API call
+2025-11-29 09:57:19,880 [INFO] trend_scanner.tools.twitter_scan_tool: Scan summary: Scanned adityabirla sunlifeinsurance (20 tweets, type=trending), scraped 0 links, found 0 trending tweets
+2025-11-29 09:57:19,880 [INFO] trend_scanner.google_agents: Executing parallel task 36/38 with agent 'twitter_scanner'
+2025-11-29 09:57:19,880 [INFO] trend_scanner.google_agents: Agent Twitter/X Trend Scout executing Twitter scan for Dera Sacha Sauda (type: trending)
+2025-11-29 09:57:19,880 [INFO] trend_scanner.tools.twitter_scan_tool: Starting Twitter scan (type=trending, target=Dera Sacha Sauda, limit=50)
+2025-11-29 09:57:20,329 [INFO] trend_scanner.tools.twitter_scan_tool: Loaded cookies for fresh client
+2025-11-29 09:57:20,329 [INFO] trend_scanner.tools.twitter_scan_tool: Searching tweets for: Dera Sacha Sauda
+2025-11-29 09:57:22,215 [INFO] trend_scanner.tools.twitter_scan_tool: Fetched 20 tweets from search (limited to 50)
+2025-11-29 09:57:22,215 [INFO] trend_scanner.tools.twitter_scan_tool: Performing batch risk assessment for 0 tweets
+2025-11-29 09:57:22,215 [INFO] trend_scanner.tools.twitter_scan_tool: Batch processing: assessed 0 tweets in 1 API call
+2025-11-29 09:57:22,215 [INFO] trend_scanner.tools.twitter_scan_tool: Scan summary: Scanned Dera Sacha Sauda (20 tweets, type=trending), scraped 0 links, found 0 trending tweets
+2025-11-29 09:57:22,215 [INFO] trend_scanner.google_agents: Executing parallel task 37/38 with agent 'twitter_scanner'
+2025-11-29 09:57:22,215 [INFO] trend_scanner.google_agents: Agent Twitter/X Trend Scout executing Twitter scan for औद्योगिक क्रांति (type: trending)
+2025-11-29 09:57:22,215 [INFO] trend_scanner.tools.twitter_scan_tool: Starting Twitter scan (type=trending, target=औद्योगिक क्रांति, limit=50)
+2025-11-29 09:57:22,642 [INFO] trend_scanner.tools.twitter_scan_tool: Loaded cookies for fresh client
+2025-11-29 09:57:22,642 [INFO] trend_scanner.tools.twitter_scan_tool: Searching tweets for: औद्योगिक क्रांति
+2025-11-29 09:57:24,257 [INFO] trend_scanner.tools.twitter_scan_tool: Fetched 20 tweets from search (limited to 50)
+2025-11-29 09:57:24,257 [INFO] trend_scanner.tools.twitter_scan_tool: Performing batch risk assessment for 0 tweets
+2025-11-29 09:57:24,257 [INFO] trend_scanner.tools.twitter_scan_tool: Batch processing: assessed 0 tweets in 1 API call
+2025-11-29 09:57:24,257 [INFO] trend_scanner.tools.twitter_scan_tool: Scan summary: Scanned औद्योगिक क्रांति (20 tweets, type=trending), scraped 0 links, found 0 trending tweets
+2025-11-29 09:57:24,257 [INFO] trend_scanner.google_agents: Executing parallel task 38/38 with agent 'twitter_scanner'
+2025-11-29 09:57:24,265 [INFO] trend_scanner.google_agents: Agent Twitter/X Trend Scout executing Twitter scan for India's GDP (type: trending)
+2025-11-29 09:57:24,265 [INFO] trend_scanner.tools.twitter_scan_tool: Starting Twitter scan (type=trending, target=India's GDP, limit=50)
+2025-11-29 09:57:24,708 [INFO] trend_scanner.tools.twitter_scan_tool: Loaded cookies for fresh client
+2025-11-29 09:57:24,708 [INFO] trend_scanner.tools.twitter_scan_tool: Searching tweets for: India's GDP
+2025-11-29 09:57:26,265 [INFO] trend_scanner.tools.twitter_scan_tool: Fetched 20 tweets from search (limited to 50)
+2025-11-29 09:57:26,268 [INFO] trend_scanner.tools.twitter_scan_tool: Performing batch risk assessment for 0 tweets
+2025-11-29 09:57:26,268 [INFO] trend_scanner.tools.twitter_scan_tool: Batch processing: assessed 0 tweets in 1 API call
+2025-11-29 09:57:26,268 [INFO] trend_scanner.tools.twitter_scan_tool: Scan summary: Scanned India's GDP (20 tweets, type=trending), scraped 0 links, found 0 trending tweets
+2025-11-29 09:57:35,736 [INFO] trend_scanner.google_agents: Executing cross-platform risk assessment
+2025-11-29 09:58:46,231 [INFO] trend_scanner.google_agents: Content Risk Assessor provided with 8 posts from multiple platforms for cross-platform analysis
+2025-11-29 09:58:58,379 [INFO] trend_scanner.google_agents: Processed Reddit scan: 1 posts
+2025-11-29 09:58:58,379 [INFO] trend_scanner.google_agents: Processed Reddit scan: 0 posts
+2025-11-29 09:58:58,379 [INFO] trend_scanner.google_agents: Processed Reddit scan: 2 posts
+2025-11-29 09:58:58,379 [INFO] trend_scanner.google_agents: Processed Reddit scan: 0 posts
+2025-11-29 09:58:58,379 [INFO] trend_scanner.google_agents: Processed Twitter scan: 0 posts
+2025-11-29 09:58:58,379 [INFO] trend_scanner.google_agents: Processed Twitter scan: 5 posts
+2025-11-29 09:58:58,379 [INFO] trend_scanner.google_agents: Processed Twitter scan: 0 posts
+2025-11-29 09:58:58,379 [INFO] trend_scanner.google_agents: Processed Twitter scan: 0 posts
+2025-11-29 09:58:58,379 [INFO] trend_scanner.google_agents: Processed Twitter scan: 0 posts
+2025-11-29 09:58:58,379 [INFO] trend_scanner.google_agents: Processed Twitter scan: 0 posts
+2025-11-29 09:58:58,379 [INFO] trend_scanner.google_agents: Processed Twitter scan: 0 posts
+2025-11-29 09:58:58,379 [INFO] trend_scanner.google_agents: Processed Twitter scan: 0 posts
+2025-11-29 09:58:58,379 [INFO] trend_scanner.google_agents: Processed Twitter scan: 0 posts
+2025-11-29 09:58:58,379 [INFO] trend_scanner.google_agents: Processed Twitter scan: 0 posts
+2025-11-29 09:58:58,379 [INFO] trend_scanner.google_agents: Processed Twitter scan: 0 posts
+2025-11-29 09:58:58,379 [INFO] trend_scanner.google_agents: Processed Twitter scan: 0 posts
+2025-11-29 09:58:58,379 [INFO] trend_scanner.google_agents: Processed Twitter scan: 0 posts
+2025-11-29 09:58:58,379 [INFO] trend_scanner.google_agents: Processed Twitter scan: 0 posts
+2025-11-29 09:58:58,379 [INFO] trend_scanner.google_agents: Processed Twitter scan: 0 posts
+2025-11-29 09:58:58,379 [INFO] trend_scanner.google_agents: Processed Twitter scan: 0 posts
+2025-11-29 09:58:58,379 [INFO] trend_scanner.google_agents: Processed Twitter scan: 0 posts
+2025-11-29 09:58:58,379 [INFO] trend_scanner.google_agents: Processed Twitter scan: 0 posts
+2025-11-29 09:58:58,379 [INFO] trend_scanner.google_agents: Processed Twitter scan: 0 posts
+2025-11-29 09:58:58,379 [INFO] trend_scanner.google_agents: Processed Twitter scan: 0 posts
+2025-11-29 09:58:58,379 [INFO] trend_scanner.google_agents: Processed Twitter scan: 0 posts
+2025-11-29 09:58:58,379 [INFO] trend_scanner.google_agents: Processed Twitter scan: 0 posts
+2025-11-29 09:58:58,379 [INFO] trend_scanner.google_agents: Processed Twitter scan: 0 posts
+2025-11-29 09:58:58,379 [INFO] trend_scanner.google_agents: Processed Twitter scan: 0 posts
+2025-11-29 09:58:58,379 [INFO] trend_scanner.google_agents: Processed Twitter scan: 0 posts
+2025-11-29 09:58:58,379 [INFO] trend_scanner.google_agents: Processed Twitter scan: 0 posts
+2025-11-29 09:58:58,379 [INFO] trend_scanner.google_agents: Processed Twitter scan: 0 posts
+2025-11-29 09:58:58,379 [INFO] trend_scanner.google_agents: Processed Twitter scan: 0 posts
+2025-11-29 09:58:58,379 [INFO] trend_scanner.google_agents: Processed Twitter scan: 0 posts
+2025-11-29 09:58:58,379 [INFO] trend_scanner.google_agents: Processed Twitter scan: 0 posts
+2025-11-29 09:58:58,379 [INFO] trend_scanner.google_agents: Processed Twitter scan: 0 posts
+2025-11-29 09:58:58,379 [INFO] trend_scanner.google_agents: Processed Twitter scan: 0 posts
+2025-11-29 09:58:58,379 [INFO] trend_scanner.google_agents: Processed Twitter scan: 0 posts
+2025-11-29 09:58:58,379 [INFO] trend_scanner.google_agents: Processed Twitter scan: 0 posts
+2025-11-29 09:58:58,379 [INFO] trend_scanner.google_agents: Multi-platform scan completed - Reddit: 3, Threads: 0, Telegram: 0, Twitter: 5, Total: 8
+2025-11-29 09:59:15,190 [INFO] __main__: Workflow completed: 1/1 tasks successful
+2025-11-29 09:59:15,190 [INFO] __main__: Found 8 posts from trend scanner, preparing for verification...
+2025-11-29 09:59:15,190 [INFO] __main__: Prepared 8 claims for verification
+2025-11-29 09:59:15,190 [INFO] __main__: Step 2: Executing claim verification with batch processing...
+2025-11-29 09:59:15,190 [INFO] __main__: Starting Google Agents workflow with 1 tasks
+2025-11-29 09:59:15,190 [INFO] __main__: Executing task 1/1: verifier_coordinator - Verify extracted claims using comprehensive fact-checking workflow
+2025-11-29 09:59:15,190 [INFO] __main__: Agent Claim Verification Coordinator has 1 tools available
+2025-11-29 09:59:15,190 [INFO] __main__: Tool 0: <class 'claim_verifier.agents.ClaimVerifierOrchestrator'> with methods: ['claim_extractor', 'fact_checker', 'fact_verifier', 'gemini_api_key', 'google_agents', 'priority_assessor', 'quick_verify', 'report_generator', 'verify_content']...
+2025-11-29 09:59:15,190 [INFO] __main__: Starting tool detection for task: 'Verify extracted claims using comprehensive fact-checking workflow'
+2025-11-29 09:59:15,190 [INFO] __main__: Checking conditions:
+2025-11-29 09:59:15,190 [INFO] __main__:   - hasattr(tool, '__call__'): False
+2025-11-29 09:59:15,190 [INFO] __main__:   - 'scan' in task_description.lower(): False
+2025-11-29 09:59:15,190 [INFO] __main__:   - hasattr(tool, 'verify_content'): True
+2025-11-29 09:59:15,190 [INFO] __main__:   - 'verify' in task_description.lower(): True
+2025-11-29 09:59:15,190 [INFO] __main__:   - hasattr(tool, 'execute_workflow'): False
+2025-11-29 09:59:15,190 [INFO] __main__:   - hasattr(tool, 'batch_create_posts'): False
+2025-11-29 09:59:15,190 [INFO] __main__:   - 'explanation' in task_description.lower(): False
+2025-11-29 09:59:15,190 [INFO] __main__:   - hasattr(tool, 'create_debunk_post'): False
+2025-11-29 09:59:15,190 [INFO] __main__: Agent Claim Verification Coordinator executing claim verification tool with batch processing...
+2025-11-29 09:59:15,190 [INFO] __main__: Processing 8 claims using batch verification...
+2025-11-29 09:59:15,190 [INFO] claim_verifier.agents: Starting Google Agents claim verification for 8 content items with batch processing
+2025-11-29 09:59:15,196 [INFO] claim_verifier.agents: Processing 8 claims in batches of 15
+2025-11-29 09:59:15,196 [INFO] claim_verifier.agents: Processing batch 1: claims 1-8
+2025-11-29 10:00:16,211 [INFO] claim_verifier.agents: Batch verification completed: 8 total claims processed
+2025-11-29 10:00:16,211 [INFO] __main__: Workflow completed: 1/1 tasks successful
+2025-11-29 10:00:16,211 [INFO] __main__: Extracted 8 verified claims for explanation generation
+2025-11-29 10:00:16,211 [INFO] __main__: Processing 8 verified claims for explanation generation
+2025-11-29 10:00:16,211 [INFO] __main__: Claim 0: verdict='true', verified=True, claim_text='Donald Trump announced his intention to pardon for...'
+2025-11-29 10:00:16,211 [INFO] __main__:   Original claim structure keys: ['claim_text', 'content_summary', 'source', 'verification', 'claim_metadata', 'verification_timestamp']
+2025-11-29 10:00:16,215 [INFO] __main__: ❌ EXCLUDING claim from debunk posts: verdict='true', verified=True
+2025-11-29 10:00:16,215 [INFO] __main__: Claim 1: verdict='uncertain', verified=False, claim_text='The FBI is spending nearly $1 million in overtime ...'
+2025-11-29 10:00:16,215 [INFO] __main__:   Original claim structure keys: ['claim_text', 'content_summary', 'source', 'verification', 'claim_metadata', 'verification_timestamp']
+2025-11-29 10:00:16,215 [INFO] __main__:   Found 5 source links and 5 source titles
+2025-11-29 10:00:16,215 [INFO] __main__: ✅ INCLUDING claim for debunk post: The FBI is spending nearly $1 million in overtime ... (verdict: uncertain)
+2025-11-29 10:00:16,215 [INFO] __main__:   Sources included: 5 links
+2025-11-29 10:00:16,215 [INFO] __main__: Claim 2: verdict='uncertain', verified=False, claim_text='South Carolina is experiencing a measles outbreak,...'
+2025-11-29 10:00:16,215 [INFO] __main__:   Original claim structure keys: ['claim_text', 'content_summary', 'source', 'verification', 'claim_metadata', 'verification_timestamp']
+2025-11-29 10:00:16,215 [INFO] __main__:   Found 5 source links and 5 source titles
+2025-11-29 10:00:16,215 [INFO] __main__: ✅ INCLUDING claim for debunk post: South Carolina is experiencing a measles outbreak,... (verdict: uncertain)
+2025-11-29 10:00:16,215 [INFO] __main__:   Sources included: 5 links
+2025-11-29 10:00:16,215 [INFO] __main__: Claim 3: verdict='uncertain', verified=False, claim_text='An individual criticizes the high taxation in thei...'
+2025-11-29 10:00:16,215 [INFO] __main__:   Original claim structure keys: ['claim_text', 'content_summary', 'source', 'verification', 'claim_metadata', 'verification_timestamp']
+2025-11-29 10:00:16,215 [INFO] __main__:   Found 5 source links and 5 source titles
+2025-11-29 10:00:16,215 [INFO] __main__: ✅ INCLUDING claim for debunk post: An individual criticizes the high taxation in thei... (verdict: uncertain)
+2025-11-29 10:00:16,215 [INFO] __main__:   Sources included: 5 links
+2025-11-29 10:00:16,215 [INFO] __main__: Claim 4: verdict='uncertain', verified=False, claim_text='Despite acquiring new skills and actively seeking ...'
+2025-11-29 10:00:16,215 [INFO] __main__:   Original claim structure keys: ['claim_text', 'content_summary', 'source', 'verification', 'claim_metadata', 'verification_timestamp']
+2025-11-29 10:00:16,215 [INFO] __main__:   Found 5 source links and 5 source titles
+2025-11-29 10:00:16,215 [INFO] __main__: ✅ INCLUDING claim for debunk post: Despite acquiring new skills and actively seeking ... (verdict: uncertain)
+2025-11-29 10:00:16,215 [INFO] __main__:   Sources included: 5 links
+2025-11-29 10:00:16,215 [INFO] __main__: Claim 5: verdict='uncertain', verified=False, claim_text='Dubai's roads are remarkably free of dust despite ...'
+2025-11-29 10:00:16,215 [INFO] __main__:   Original claim structure keys: ['claim_text', 'content_summary', 'source', 'verification', 'claim_metadata', 'verification_timestamp']
+2025-11-29 10:00:16,215 [INFO] __main__:   Found 5 source links and 5 source titles
+2025-11-29 10:00:16,215 [INFO] __main__: ✅ INCLUDING claim for debunk post: Dubai's roads are remarkably free of dust despite ... (verdict: uncertain)
+2025-11-29 10:00:16,215 [INFO] __main__:   Sources included: 5 links
+2025-11-29 10:00:16,215 [INFO] __main__: Claim 6: verdict='uncertain', verified=False, claim_text='A specific flyover repair is of such poor quality ...'
+2025-11-29 10:00:16,215 [INFO] __main__:   Original claim structure keys: ['claim_text', 'content_summary', 'source', 'verification', 'claim_metadata', 'verification_timestamp']
+2025-11-29 10:00:16,215 [INFO] __main__:   Found 5 source links and 5 source titles
+2025-11-29 10:00:16,215 [INFO] __main__: ✅ INCLUDING claim for debunk post: A specific flyover repair is of such poor quality ... (verdict: uncertain)
+2025-11-29 10:00:16,215 [INFO] __main__:   Sources included: 5 links
+2025-11-29 10:00:16,215 [INFO] __main__: Claim 7: verdict='uncertain', verified=False, claim_text='A list ranks various countries based on the percei...'
+2025-11-29 10:00:16,215 [INFO] __main__:   Original claim structure keys: ['claim_text', 'content_summary', 'source', 'verification', 'claim_metadata', 'verification_timestamp']
+2025-11-29 10:00:16,215 [INFO] __main__:   Found 5 source links and 5 source titles
+2025-11-29 10:00:16,215 [INFO] __main__: ✅ INCLUDING claim for debunk post: A list ranks various countries based on the percei... (verdict: uncertain)
+2025-11-29 10:00:16,215 [INFO] __main__:   Sources included: 5 links
+2025-11-29 10:00:16,215 [INFO] __main__: Verdict distribution: {'true': 1, 'uncertain': 7}
+2025-11-29 10:00:16,215 [INFO] __main__: Total claims for debunk posts: 7 out of 8
+2025-11-29 10:00:16,215 [INFO] __main__: Step 3: Executing explanation generation with batch processing for 7 misinformation claims...
+2025-11-29 10:00:16,215 [INFO] __main__: Starting Google Agents workflow with 1 tasks
+2025-11-29 10:00:16,215 [INFO] __main__: Executing task 1/1: explanation_coordinator - Generate debunk posts for misinformation claims using batch processing
+2025-11-29 10:00:16,215 [INFO] __main__: Agent Explanation Generation Coordinator has 1 tools available
+2025-11-29 10:00:16,215 [INFO] __main__: Tool 0: <class 'explanation_agent.agents.ExplanationAgent'> with methods: ['batch_create_posts', 'content_generator', 'create_debunk_post', 'orchestrator', 'source_analyzer']...
+2025-11-29 10:00:16,215 [INFO] __main__: Starting tool detection for task: 'Generate debunk posts for misinformation claims using batch processing'
+2025-11-29 10:00:16,215 [INFO] __main__: Checking conditions:
+2025-11-29 10:00:16,215 [INFO] __main__:   - hasattr(tool, '__call__'): False
+2025-11-29 10:00:16,215 [INFO] __main__:   - 'scan' in task_description.lower(): False
+2025-11-29 10:00:16,215 [INFO] __main__:   - hasattr(tool, 'verify_content'): False
+2025-11-29 10:00:16,215 [INFO] __main__:   - 'verify' in task_description.lower(): False
+2025-11-29 10:00:16,219 [INFO] __main__:   - hasattr(tool, 'execute_workflow'): False
+2025-11-29 10:00:16,219 [INFO] __main__:   - hasattr(tool, 'batch_create_posts'): True
+2025-11-29 10:00:16,219 [INFO] __main__:   - 'explanation' in task_description.lower(): False
+2025-11-29 10:00:16,219 [INFO] __main__:   - hasattr(tool, 'create_debunk_post'): True
+2025-11-29 10:00:16,219 [INFO] __main__: Agent Explanation Generation Coordinator executing ExplanationAgent with batch processing...
+2025-11-29 10:00:16,219 [INFO] __main__: Tool type: <class 'explanation_agent.agents.ExplanationAgent'>
+2025-11-29 10:00:16,219 [INFO] __main__: Tool methods: ['batch_create_posts', 'content_generator', 'create_debunk_post', 'orchestrator', 'source_analyzer']
+2025-11-29 10:00:16,219 [INFO] __main__: Task description: 'Generate debunk posts for misinformation claims using batch processing'
+2025-11-29 10:00:16,219 [INFO] __main__: Task description contains 'explanation': False
+2025-11-29 10:00:16,220 [INFO] __main__: Tool has batch_create_posts: True
+2025-11-29 10:00:16,220 [INFO] __main__: Received verification_results: 7 items
+2025-11-29 10:00:16,220 [INFO] __main__: Found 7 verification results for explanation generation
+2025-11-29 10:00:16,220 [INFO] __main__: Verification result 0: keys = ['claim_text', 'verification', 'sources', 'source', 'content_summary', 'verified', 'verdict']
+2025-11-29 10:00:16,220 [INFO] __main__: Verification result 1: keys = ['claim_text', 'verification', 'sources', 'source', 'content_summary', 'verified', 'verdict']
+2025-11-29 10:00:16,220 [INFO] __main__: Creating debunk posts for 7 claims using batch processing...
+2025-11-29 10:00:16,220 [INFO] explanation_agent.agents: Creating 7 debunk posts with batch Google Agents processing...
+2025-11-29 10:00:16,220 [INFO] explanation_agent.agents: Processing batch 1: posts 1-7
+2025-11-29 10:00:16,220 [INFO] explanation_agent.agents: Agent Content Generation Specialist executing batch processing tool...
+2025-11-29 10:00:40,565 [INFO] explanation_agent.agents: Raw Gemini response (first 500 chars): ```json
+[
+    {
+        "heading": "FBI Epstein File Redactions: No Evidence for $1M Trump Flagging",
+        "body": "Reports alleging the FBI is spending nearly $1 million in overtime specifically to redact Jeffrey Epstein's files and flag mentions of Trump during the review process lack credible evidence. While the process of reviewing and releasing sensitive documents, like those related to the Epstein case, can be resource-intensive and involve extensive redactions, there is no verified inf
+2025-11-29 10:00:40,565 [INFO] explanation_agent.agents: Cleaned response (first 500 chars): [
+    {
+        "heading": "FBI Epstein File Redactions: No Evidence for $1M Trump Flagging",
+        "body": "Reports alleging the FBI is spending nearly $1 million in overtime specifically to redact Jeffrey Epstein's files and flag mentions of Trump during the review process lack credible evidence. While the process of reviewing and releasing sensitive documents, like those related to the Epstein case, can be resource-intensive and involve extensive redactions, there is no verified information
+2025-11-29 10:00:40,567 [INFO] explanation_agent.agents: Extracted JSON: [
+    {
+        "heading": "FBI Epstein File Redactions: No Evidence for $1M Trump Flagging",
+        "body": "Reports alleging the FBI is spending nearly $1 million in overtime specifically to redact Jeffrey Epstein's files and flag mentions of Trump during the review process lack credible evidence. While the process of reviewing and releasing sensitive documents, like those related to the Epstein case, can be resource-intensive and involve extensive redactions, there is no verified information
+2025-11-29 10:00:40,567 [INFO] explanation_agent.agents: Agent Source Analysis Specialist executing batch processing tool...
+2025-11-29 10:00:40,567 [INFO] explanation_agent.agents: Processing batch sources for 7 verification results
+2025-11-29 10:00:40,567 [INFO] explanation_agent.agents: Verification result 0: 5 links, 5 titles
+2025-11-29 10:00:40,567 [INFO] explanation_agent.agents:   Links: ['https://www.nytimes.com/2025/07/24/us/politics/epstein-files-trump-bondi-justice-department-fbi.html', 'https://customercenter.wsj.com/todaysPaper?gaa_at=eafs&gaa_n=AWEtsqce4f8uB6bFUXKnHn0cHMtmKvXVBlPJkU3zJevRS1F7vvWXcJXDRwAM&gaa_ts=692a7a20&gaa_sig=1ZUJjhY8B_z7lZXvorZdImJ_OTmlfqdOTvYoREQTjnTI0lcFtd88anYtH08M-P3WMdJnPD2bmgdBvrow21hijQ%3D%3D']
+2025-11-29 10:00:40,567 [INFO] explanation_agent.agents:   Titles: ['How a Frantic Scouring of the Epstein Files Consumed the Justice ...', "Intel Executive's Residences Raided in Probe Over Secrets"]
+2025-11-29 10:00:40,567 [INFO] explanation_agent.agents: Verification result 0: Created 5 source entries
+2025-11-29 10:00:40,567 [INFO] explanation_agent.agents: Verification result 1: 5 links, 5 titles
+2025-11-29 10:00:40,567 [INFO] explanation_agent.agents:   Links: ['https://www.pbs.org/newshour/health/measles-cases-are-rising-in-the-u-s-heres-why-misinformation-about-the-vaccine-persists-today', 'https://www.nytimes.com/live/2021/07/15/world/covid-variant-vaccine-updates']
+2025-11-29 10:00:40,567 [INFO] explanation_agent.agents:   Titles: ["Measles cases are rising in the U.S. Here's why misinformation ...", 'Coronavirus Updates: Covid News: Los Angeles County Will ...']
+2025-11-29 10:00:40,567 [INFO] explanation_agent.agents: Verification result 1: Created 5 source entries
+2025-11-29 10:00:40,567 [INFO] explanation_agent.agents: Verification result 2: 5 links, 5 titles
+2025-11-29 10:00:40,567 [INFO] explanation_agent.agents:   Links: ['https://www.pbs.org/newshour/economy/making-sense/4-myths-about-how-immigrants-affect-the-u-s-economy', 'https://www.nytimes.com/2025/06/20/world/americas/birthrate-fertility-feminism.html']
+2025-11-29 10:00:40,567 [INFO] explanation_agent.agents:   Titles: ['4 myths about how immigrants affect the U.S. economy | PBS News', 'The Feminist Case for Spending Billions to Boost the Birthrate - The ...']
+2025-11-29 10:00:40,567 [INFO] explanation_agent.agents: Verification result 2: Created 5 source entries
+2025-11-29 10:00:40,567 [INFO] explanation_agent.agents: Verification result 3: 5 links, 5 titles
+2025-11-29 10:00:40,567 [INFO] explanation_agent.agents:   Links: ['https://www.bbc.com/news/articles/c0j7p38jg15o', 'https://www.pbs.org/newshour/economy/making-sense/how-trumps-tax-cuts-are-boosting-gdp-and-why-that-might-not-last']
+2025-11-29 10:00:40,567 [INFO] explanation_agent.agents:   Titles: ['What is GDP and how fast is the UK economy growing?', "How Trump's tax cuts are boosting GDP, and why that might not last ..."]
+2025-11-29 10:00:40,567 [INFO] explanation_agent.agents: Verification result 3: Created 5 source entries
+2025-11-29 10:00:40,567 [INFO] explanation_agent.agents: Verification result 4: 5 links, 5 titles
+2025-11-29 10:00:40,567 [INFO] explanation_agent.agents:   Links: ['https://www.nytimes.com/interactive/2020/world/coronavirus-tips-advice.html', 'https://www.nytimes.com/2019/08/12/business/jeffrey-epstein-interview.html']
+2025-11-29 10:00:40,567 [INFO] explanation_agent.agents:   Titles: ['Answers to Your Current Coronavirus Questions - The New York ...', 'The Day Jeffrey Epstein Told Me He Had Dirt on Powerful People ...']
+2025-11-29 10:00:40,567 [INFO] explanation_agent.agents: Verification result 4: Created 5 source entries
+2025-11-29 10:00:40,567 [INFO] explanation_agent.agents: Verification result 5: 5 links, 5 titles
+2025-11-29 10:00:40,567 [INFO] explanation_agent.agents:   Links: ['https://www.npr.org/2021/10/05/1043458075/senators-discuss-their-proposal-that-would-repair-the-infrastructure-of-hbcus-an', 'https://www.nytimes.com/2014/07/18/us/obama-seeks-infrastructure-repair-money.html']
+2025-11-29 10:00:40,567 [INFO] explanation_agent.agents:   Titles: ['Senators discuss their proposal that would repair the infrastructure ...', 'Public Problems, Private Dollars: Obama Seeks Infrastructure ...']
+2025-11-29 10:00:40,567 [INFO] explanation_agent.agents: Verification result 5: Created 5 source entries
+2025-11-29 10:00:40,567 [INFO] explanation_agent.agents: Verification result 6: 5 links, 5 titles
+2025-11-29 10:00:40,567 [INFO] explanation_agent.agents:   Links: ['https://www.bbc.com/news/world-asia-india-68823827', 'https://www.theguardian.com/lifeandstyle/2022/jul/16/snoring-was-ruining-my-marriage-heres-how-i-finally-cured-myself']
+2025-11-29 10:00:40,567 [INFO] explanation_agent.agents:   Titles: ["India's economy: The good, bad and ugly in six charts", "Snoring was ruining my marriage – here's how I finally cured myself ..."]
+2025-11-29 10:00:40,567 [INFO] explanation_agent.agents: Verification result 6: Created 5 source entries
+2025-11-29 10:00:40,567 [INFO] explanation_agent.agents: Batch source analysis completed: 42 total sources processed
+2025-11-29 10:00:40,575 [INFO] explanation_agent.agents: Batch processing completed: 7 total posts created
+2025-11-29 10:00:40,575 [INFO] __main__: Tool result type: <class 'dict'>
+2025-11-29 10:00:40,575 [INFO] __main__: Tool result keys: ['success', 'message', 'debunk_posts', 'batch_statistics']
+2025-11-29 10:00:40,575 [INFO] __main__: Batch explanation generation completed successfully with 7 posts generated
+2025-11-29 10:00:40,575 [INFO] __main__: ExplanationAgent tool execution completed - tool_used: True
+2025-11-29 10:00:40,575 [INFO] __main__: Workflow completed: 1/1 tasks successful
+2025-11-29 10:00:40,577 [INFO] __main__: Explanation generation completed: True
+2025-11-29 10:00:40,577 [INFO] __main__: Step 4: Processing and combining all results...
+2025-11-29 10:00:40,577 [INFO] __main__: Trend scanning completed: 8 posts
+2025-11-29 10:00:40,577 [INFO] __main__: Claim verification completed: True
+2025-11-29 10:00:40,577 [INFO] __main__: Batch verification processed 8 claims in batches of 8
+2025-11-29 10:00:40,577 [INFO] __main__: Explanation generation completed: True
+2025-11-29 10:00:40,577 [INFO] __main__: Batch explanation generation processed 7 claims in batches of 7
+2025-11-29 10:00:40,577 [INFO] __main__: Successfully created 7 debunk posts
+2025-11-29 10:00:40,577 [INFO] __main__: Extracted 7 debunk posts from explanation generation
+2025-11-29 10:00:40,578 [INFO] __main__: Google Agents results saved to: orchestrator_results\google_agents_orchestrator_results_20251129_100040.json
+2025-11-29 10:00:40,584 [INFO] __main__: Saving results to MongoDB...
+2025-11-29 10:00:41,008 [INFO] mongodb_integration: ✅ Successfully connected to MongoDB
+2025-11-29 10:00:41,067 [INFO] mongodb_integration: ✅ Database indexes created successfully
+2025-11-29 10:00:41,067 [INFO] mongodb_integration: ✅ MongoDB collections setup completed
+2025-11-29 10:00:41,079 [INFO] mongodb_integration: ✅ Stored debunk post: aegis_post_20251129_100040_567846_a95743d4
+2025-11-29 10:00:41,085 [INFO] mongodb_integration: ✅ Stored debunk post: aegis_post_20251129_100040_567846_6bced294
+2025-11-29 10:00:41,102 [INFO] mongodb_integration: ✅ Stored debunk post: aegis_post_20251129_100040_573217_3d72416b
+2025-11-29 10:00:41,113 [INFO] mongodb_integration: ✅ Stored debunk post: aegis_post_20251129_100040_573217_8aef784b
+2025-11-29 10:00:41,123 [INFO] mongodb_integration: ✅ Stored debunk post: aegis_post_20251129_100040_573217_fa2a265f
+2025-11-29 10:00:41,133 [INFO] mongodb_integration: ✅ Stored debunk post: aegis_post_20251129_100040_573217_b09baa3d
+2025-11-29 10:00:41,141 [INFO] mongodb_integration: ✅ Stored debunk post: aegis_post_20251129_100040_573217_c108f5eb
+2025-11-29 10:00:41,141 [INFO] mongodb_integration: 📊 Debunk posts storage completed: 7 stored, 0 skipped, 0 errors
+2025-11-29 10:00:41,141 [INFO] __main__: ✅ Successfully stored 7 debunk posts to MongoDB
+2025-11-29 10:00:41,148 [INFO] mongodb_integration: 🔌 MongoDB connection closed
+2025-11-29 10:00:41,156 [INFO] __main__: Google Agents orchestrated pipeline with batch processing completed successfully
