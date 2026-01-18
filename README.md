@@ -21,12 +21,12 @@
 
 ## 🎯 Overview
 
-Project Aegis is a comprehensive misinformation detection pipeline that combines multi-platform trend scanning (**Reddit** & **Threads**), AI-powered content analysis, and automated fact-checking to provide real-time detection and verification of potentially harmful content.
+Project Aegis is a comprehensive misinformation detection pipeline that combines multi-platform trend scanning (**Reddit**, **Threads**, **Twitter (X)**, & **Telegram**), AI-powered content analysis, and automated fact-checking to provide real-time detection and verification of potentially harmful content.
 
 ### 🎪 Mumbai Hacks Project
 
-This project was developed for **Mumbai Hacks**, featuring a complete automated pipeline that:
-- **Scans Social Media** (Reddit & Threads) for trending posts.
+- This project was developed for **Mumbai Hacks**, featuring a complete automated pipeline that:
+- **Scans Social Media** (Reddit, Threads, Twitter (X), and Telegram) for trending posts.
 - **Generates AI summaries** and extracts claims using Google Gemini 2.5.
 - **Fact-checks Claims** against reliable sources with automated verification.
 - **Verifies Media** (Images/Videos) for deepfakes and manipulation.
@@ -74,8 +74,10 @@ With the rapid spread of misinformation on social media, there's a critical need
 │                  │            │                  │            │                     │
 │ • Reddit Monitor │───────────>│ • Google Search  │───────────>│ • Debunk Generator  │
 │ • Threads Scraper│   step 1   │ • Media Verifier │   step 2   │ • Content Creator   │
-│ • Web Scraper    │            │ • Source Analysis│            │ • Educational Posts │
-│ • AI Summarizer  │            │ • Batch Verify   │            │ • Batch Processing  │
+│ • Twitter Monitor│            │ • Source Analysis│            │ • Educational Posts │
+│ • Telegram Scan  │            │ • Batch Verify   │            │ • Batch Processing  │
+│ • Web Scraper    │            │                  │            │                     │
+│ • AI Summarizer  │            │                  │            │                     │
 └──────────────────┘            └──────────────────┘            └─────────────────────┘
          │                               │                               │
          │ data flow                     │ data flow                     │ data flow
@@ -84,7 +86,7 @@ With the rapid spread of misinformation on social media, there's a critical need
 ┌─────────────────────────────────────────────────────────────────────────────────────┐
 │                              DATA FLOW SEQUENCE                                     │
 │                                                                                     │
-│  Step 1: Orchestrator → Trend Scanner (Reddit/Threads) → Trending posts             │
+│  Step 1: Orchestrator → Trend Scanner (Reddit/Threads/Twitter/Telegram) → Trending posts             │
 │  Step 2: Orchestrator → Claim Verifier (Text + Media) → Verified verdicts           │
 │  Step 3: Orchestrator → Explanation Agent → Debunk posts → Final Output             │
 └─────────────────────────────────────────────────────────────────────────────────────┘
@@ -113,8 +115,8 @@ With the rapid spread of misinformation on social media, there's a critical need
 - **Reverse Image Search** - Validates image origins and context via SerpAPI
 - **YouTube Verification** - Metadata validation + visual analysis for YouTube links
 
-### 📊 **Real-Time Detection & Verification**
-- **Multi-Platform Scanning** - Continuous monitoring of **Reddit** and **Threads**
+-### 📊 **Real-Time Detection & Verification**
+- **Multi-Platform Scanning** - Continuous monitoring of **Reddit**, **Threads**, **Twitter (X)**, and **Telegram**
 - **Velocity Tracking** - Detection of rapidly trending posts
 - **Risk Assessment** - Priority scoring for high-risk content
 
@@ -125,7 +127,7 @@ With the rapid spread of misinformation on social media, there's a critical need
 - **LiteLLM** - Multi-provider LLM integration
 
 ### 🌐 **Web Scraping & Content Extraction**
-- **Playwright** - Headless browser automation for dynamic scraping (Threads)
+- **Playwright** - Headless browser automation for dynamic scraping (Threads and other dynamic sites)
 - **Beautiful Soup 4** - HTML/XML parsing
 - **Newspaper3K & Trafilatura** - Article extraction
 - **PRAW** - Reddit API Wrapper
@@ -183,6 +185,112 @@ python trend_scanner_agent.py          # Trend scanning only
 python video_verifier.py               # Standalone video verification
 ```
 
+## 🔌 Internal Google Agents helpers
+
+
+This repository provides an internal helper/orchestration layer implemented in the `trend_scanner.google_agents` module and used across the codebase.
+
+Where the implementation lives:
+- Module implementation: `trend_scanner/google_agents.py`
+- Used by: `orchestrator_agent.py`, `trend_scanner/` tools, `claim_verifier/`, `explanation_agent/`, and other modules.
+- Key classes exported/used across the repo: `GoogleAgentsManager`, `GoogleAIManager`, `GoogleOrchestrator`, and `GoogleAgentsOrchestrator`.
+
+What it is:
+- An internal, lightweight set of orchestration helpers that wrap `google.generativeai` calls, normalize requests/responses, and provide agent/workflow abstractions used by the orchestrator and tools.
+
+How other code uses it (examples from the repo):
+```python
+from trend_scanner.google_agents import GoogleAgentsManager
+
+gm = GoogleAgentsManager(api_key=os.getenv('GOOGLE_API_KEY'))
+agent = gm.create_agent('trend_scanner', role='TrendScanner', goal='Identify trending posts')
+result = agent.execute_task('Scan r/worldnews for trending posts')
+```
+
+Notes:
+- This helper layer is internal and experimental; it is not an official Google SDK.
+- If desired, we can extract these helpers into a top-level package (for example, `aegis_agents/`) and add dedicated docs/examples under `docs/SDK.md`.
+
+## 🔗 Integration: Twitter
+
+This repo includes full Twitter/X support: scanning tools, cookie management, and login helpers.
+
+Key files:
+- `login_twitter.py` — browser-based login helper to create cookie exports.
+- `twitter_cookie_monitor.py` — cookie health checks and refresh monitoring.
+- `convert_cookies.py` — conversion utilities between `cookies.txt` and the repo's JSON cookie format.
+- `trend_scanner/tools/twitter_scan_tool.py` — the scanning tool used by the trend scanner.
+
+Dependencies & auth options:
+- Primary dependency: `twikit` (or scraping via Playwright). Ensure `twikit` is installed from `requirements.txt`.
+- You can authenticate by:
+  - Running `python login_twitter.py` to save cookies, or
+  - Exporting browser cookies (`cookies.txt`) and converting them with `python convert_cookies.py`.
+
+Environment variables (examples used across code):
+- `TWITTER_USERNAME`, `TWITTER_PASSWORD` (for automated login flows)
+- `TWITTER_COOKIES_FILE` (path to JSON cookies used by scanners)
+- `TWITTER_ENABLED=true` to enable Twitter scanning in agents
+
+Quick commands:
+```bash
+python login_twitter.py
+python trend_scanner_agent.py        # run the trend scanner (ensure TWITTER_ENABLED=true)
+```
+
+Notes:
+- The README previously referenced Playwright; Twitter scanning supports cookie-based scraping and Playwright-based flows depending on config. Add Playwright only if you need browser automation fallback.
+
+## 🔗 Integration: Telegram
+
+This repo includes Telegram channel scanning via Telethon.
+
+Key files:
+- `trend_scanner/tools/telegram_scan_tool.py` — Telegram scan tool used by the trend scanner.
+
+Dependencies & auth:
+- Dependency: `telethon` (listed in `requirements.txt`).
+- Required env vars for initial setup:
+  - `TELEGRAM_API_ID`
+  - `TELEGRAM_API_HASH`
+  - Optional: `TELEGRAM_PHONE`, `TELEGRAM_SESSION_NAME`
+
+First-time auth:
+- Telethon requires an interactive auth (phone + code) the first time. Run the scanner locally and follow the prompt to save the session file.
+
+Quick command:
+```bash
+# set TELEGRAM_API_ID and TELEGRAM_API_HASH, then:
+python trend_scanner_agent.py        # ensure TELEGRAM_ENABLED=true
+```
+
+## ⚙️ Other Important Setup Notes
+
+- MongoDB: The repo has Mongo integration utilities. Set `MONGODB_URI` to enable database persistence (the code references a Mongo helper/`AegisMongoDB`).
+- Google/Gemini keys: Components using Google generative APIs reference `GEMINI_API_KEY` or `GOOGLE_API_KEY`. Provide these keys as env vars for summarization/vision features.
+- SerpAPI / Reverse Image Search: set `SERPAPI_KEY` if you want the reverse-image helpers to work.
+- Scrapfly: If `scrapfly-sdk` is used (present in `requirements.txt`), set `SCRAPFLY_API_KEY` for certain scraping flows.
+- Playwright: After `pip install -r requirements.txt`, run:
+```bash
+playwright install chromium
+```
+  Some dynamic scraping (Threads/Playwright flows) require this.
+- Cookie conversion: Use `convert_cookies.py` to transform browser `cookies.txt` exports into the JSON format used by the scanners.
+
+## 🧪 Tests
+
+Run unit tests with:
+```bash
+pytest -q
+```
+Note: Some tests expect certain env vars or mocks; refer to test files for details.
+
+---
+
+If you'd like, I can:
+- extract the small helpers into a `aegis_agents/` package for clearer imports,
+- or add `docs/INTEGRATIONS.md` with step-by-step auth examples and screenshots.
+
 ## 🔧 Pipeline Components
 
 ### 1. **🎼 Orchestrator Agent** (`orchestrator_agent.py`)
@@ -191,6 +299,8 @@ Central coordination managing the entire lifecycle from scanning to explanation,
 ### 2. **🔍 Trend Scanner Agent** (`trend_scanner/`)
 - **monitor_reddit.py**: Live post monitoring across subreddits.
 - **threads_scraper.py**: Dynamic scraping of Threads.net using Playwright to extract trending discussions.
+- **twitter_monitor.py**: Twitter/X monitoring and scraping utilities (cookie-based or API-backed flows).
+- **telegram_scraper.py**: Telegram channel monitoring utilities (Telethon-based).
 - **AI Analysis**: Gemini-powered summarization and risk scoring.
 
 ### 3. **✅ Claim Verifier Agent** (`claim_verifier/` & `video_verifier.py`)
