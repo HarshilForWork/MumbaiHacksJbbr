@@ -1,346 +1,157 @@
-## Project Aegis – Real‑Time Fact‑Checking & Educational Platform
+# 🏥 Insurance Policy RAG System
 
-Project Aegis is an end‑to‑end fact‑checking and media literacy platform.  
-It monitors rumours in real time, debunks them using AI + editorial logic, and then teaches users how to spot similar misinformation through curated educational modules.
-
-The stack is:
-
-- **Frontend**: React (Vite), React Router, Framer Motion, Tailwind‑style utilities
-- **Backend**: FastAPI, MongoDB, Razorpay subscriptions, WebSockets
-- **Infra / Tooling**: Axios, ESLint, Vite dev server
+This project is an advanced **retrieval-augmented generation (RAG)** system designed to process, index, and query insurance policy documents. It allows users to ask natural language questions about coverage, claims, and exclusions and receive accurate, citation-backed answers.
 
 ---
 
-## High‑Level Features
+## 🏗️ Architecture Overview
 
-- **Authentication & Profiles**
-  - Email + password signup/login.
-  - Signup captures: **name, email, phone number, age**, and **domain preferences** (Politics, Technology, Health, Crime, Military, Sports, Entertainment, Social Media only).
-  - User profile shows personal info, interests, subscription tier, and next renewal date.
+The system is built on a modular pipeline architecture that decouples document ingestion from query processing.
 
-- **Subscriptions & Billing**
-  - Razorpay subscription integration (Pro / Enterprise vs Free).
-  - Subscriptions valid for **one month**; renewal handled via Razorpay subscription lifecycle.
-  - Subscription data stored in MongoDB, and each user has a `subscription_tier` (Free / Pro / Enterprise).
-  - Profile icon + profile page styling respond to tier with distinct colors:
-    - Free: grey
-    - Pro: ocean blue / cyan
-    - Enterprise: deep purple
-
-- **Rumour Feed & Live Alerts**
-  - Real‑time rumours/claims streamed via WebSocket from MongoDB change streams.
-  - Only verdicts **False** and **Uncertain** are displayed in the live alerts section.
-  - Each rumour shows: claim, mapped verdict, **confidence percentage**, and time‑ago.
-  - Clicking a rumour opens a rich **Rumour Modal** with:
-    - Claim, Verdict, Verified On
-    - Confidence percentage
-    - Long **Body** section with the reasoning
-    - **Summary** section with “Read more / Read less” handling for long text
-    - Original post link (using `post_content.heading` linked to `final_source`)
-    - Even grid layout for Body/Summary and Verdict/Verified On
-
-- **Chatbot Verification (Verify page)**
-  - Chatbot view allows users to type multi‑line input, attach files, or record audio.
-  - Frontend preserves multi‑line formatting; backend endpoint `/chatbot/verify` handles mixed text+files.
-  - Uses an `InputProcessor` on the backend to route to the right verification workflow.
-
-- **Educational Modules**
-  - Educational content is generated/stored in MongoDB (`weekly_posts.educational_module`) and surfaced via:
-    - `GET /educational/modules` (summaries)
-    - `GET /educational/modules/{module_id}` (detailed module)
-  - Each module describes a **misinformation technique** (e.g., manipulation patterns), with:
-    - Overview & technique explanation
-    - Red flags
-    - Verification tips
-    - Related patterns & user action items
-    - Real‑world example (heading, claim, verdict, body, tags, source URL)
-
-- **Personalized Learning (“For You” modules)**
-  - Each educational module has `tags` (derived from post `metadata.tags`).
-  - The Modules page shows domain tags on the cards and in the module overview.
-  - Users can:
-    - Filter by **text search** (module title/description).
-    - Filter by **domain tags** (attractive pill‑style chips).
-    - Click **“For You”** to automatically filter modules based on their own `domain_preferences` from the profile.
+### High-Level Flow
+1.  **Ingestion Phase**: PDFs ➡ Parsing ➡ Chunking ➡ Embedding ➡ Vector Storage (Pinecone/FAISS).
+2.  **Query Phase**: User Query ➡ Vector Search ➡ Context Retrieval ➡ LLM (Gemini) ➡ Answer Generation.
 
 ---
 
-## How People Actually Use It (End‑User Flows)
+## 🛠️ Implementation Details
 
-- **1. Quick rumour check from social media**
-  - User sees a viral post on X / Instagram and copies the text or link.
-  - Opens **Verify → Chatbot**, pastes the claim (multi‑line supported), optionally attaches a screenshot or video.
-  - The chatbot routes the request to the right verifier and responds with:
-    - Verdict (False / Uncertain / Mostly True, etc.)
-    - Reasoning
-    - Sources and confidence
-  - If the rumour is part of an existing debunk, it also appears in **Live Alerts**, with a modal for deep‑dive context.
+This section dives deep into how the core components are implemented in the `src/` directory.
 
-- **2. Browsing live misinformation to stay ahead**
-  - From any page, the user clicks the **alerts icon** in the navbar.
-  - Sees a live stream of only **False** and **Uncertain** posts, with confidence percentages.
-  - Clicks into a card → opens the **Rumour Modal** with:
-    - Clean, balanced layout (Claim / Verdict / Verified On / Confidence / Body / Summary).
-    - “Read more” where needed so long summaries remain readable.
-    - Direct link to the original post/source.
+### 1. Advanced Document Parsing (`src/parse_documents.py`)
+Handling PDF documents, especially those with complex layouts like insurance policies, requires robust parsing.
+*   **Hybrid Extraction Strategy**: We combine the strengths of two libraries:
+    *   **`pdfplumber`**: Used specifically for high-fidelity **table detection and extraction**.
+    *   **`PyMuPDF` (fitz)**: Used for fast and accurate **text extraction** and layout analysis.
+*   **Intelligent Table Processing**:
+    *   **Detection & Validation**: The system uses heuristics to validate if a detected structure is actually a table (checking row consistency, cell density, and ruling out list-like structures).
+    *   **Contextual Headers**: For tables without explicit headers (common in policies), the system analyzes nearby text blocks to accurately infer and attach the correct header.
+    *   **Markdown Conversion**: Extracted tables are converted into clean **Markdown format**. This preserves the structural relationship of the data (rows/cols) in a way that is token-efficient and understandable for the LLM.
 
-- **3. Setting up a learning profile**
-  - On **Signup**, the user selects domains they care about (e.g. Politics + Technology + Health).
-  - These preferences:
-    - Shape the “For You” modules list.
-    - Are visible as tags in the **Profile** page for transparency.
+### 2. Context-Aware Chunking (`src/chunk_documents_optimized.py`)
+Standard fixed-size chunking often breaks the context. We implement a custom "Optimized Text Chunker" that respects document structure:
+*   **Dedicated Table Chunking**: Tables are detected and **chunked separately** from the narrative text. This ensures that a table is never split in the middle, preserving the integrity of rows and columns for accurate retrieval.
+*   **Hierarchical Strategy**: The specific chunking logic follows a priority hierarchy:
+    1.  **Paragraph-based**: Tries to split by double newlines (`\n\n`) to keep paragraphs intact.
+    2.  **Sentence-based**: Fallback to splitting by sentence boundaries if paragraphs are too long.
+    3.  **Character-based**: Final fallback with overlap for unstructured text.
+*   **Overlap**: We maintain a `chunk_overlap` (default: 150 tokens) to ensure that context isn't lost between adjacent chunks.
 
-- **4. Learning with educational modules**
-  - User goes to **Modules** to understand patterns behind misinformation, not just individual cases.
-  - On the main Modules page they can:
-    - Use search to look for specific topics.
-    - Toggle domain tags to focus on subjects (e.g. “Elections”, “Health”, “Finance” if present in tags).
-    - Click **For You** to instantly filter to modules that match their saved domain preferences.
-  - Each module card shows:
-    - Title, description, estimated time, difficulty badges, and attractive domain tags.
-  - Inside a module detail view, the user sees:
-    - High‑level overview and tags at the top.
-    - Red flags, verification tips, real‑world example, and concrete “What you can do” actions.
+### 3. Embeddings & Indexing (`src/embed_and_index.py`)
+The system employs a high-performance vectorization pipeline:
+*   **Embedding Model**: We use **`multilingual-e5-large`** (via Pinecone Inference API) to generate high-quality 1024-dimensional vectors. This model is chosen for its superior semantic understanding across languages and document types.
+*   **Batch Processing**: Embeddings are generated in batches (size: 96) to optimize throughput and respect API rate limits.
+*   **Dual Vector Store Strategy**:
+    *   **Pinecone (Cloud)**: The primary store for scalable, low-latency production use.
+    *   **FAISS (Local)**: A fully functional local fallback used when offline or for lower latency in specific deployment scenarios. It uses `IndexFlatIP` (Inner Product) for efficient similarity matching.
+*   **Duplicate Management**: The system calculates content hashes for every chunk to detect and prevent duplicate vectors, ensuring index hygiene.
 
-- **5. Managing access and billing**
-  - In the **Profile** page, the user can see:
-    - Whether they’re on Free / Pro / Enterprise (with a matching color theme).
-    - Renewal date and days remaining.
-  - Clicking **Manage Subscription** takes them to the subscription page:
-    - Free users can see what they get by upgrading.
-    - Pro/Enterprise users can manage billing via Razorpay (create/cancel subscription).
+### 4. Advanced Query Processing & Retrieval (`src/faiss_query_processor.py`)
+The retrieval logic goes beyond simple similarity search to ensure accurate grounded answers.
+*   **Search Pipeline**:
+    1.  **Vector Search**: Retrieves the top $K$ (approx. 20) most similar chunks from the vector store using the query embedding.
+    2.  **Reranking**: We apply **`bge-reranker-v2-m3`** to re-score the initial candidates. This step significantly improves relevance by assessing the exact match quality between query and document text, which vector similarity might miss.
+*   **Extended Context Window**:
+    *   To prevent "keyhole" issues (where a chunk misses surrounding context), the system effectively retrieves the **whole document section**.
+    *   For the top reranked chunks, we fetch **25 chunks before and 25 chunks after** the target match. This provides the LLM with a massive, continuous context window (potentially covering entire policy sections) to answer comprehensive questions like "What are *all* the exclusions?".
+*   **Batch Querying**: The system supports multithreaded batch processing for handling multiple queries simultaneously.
 
-These flows are designed so a first‑time user can go from **“I saw this claim, is it real?”** to **“I understand why this pattern of misinformation works and how to defend against it”** in a few clicks.
-
----
-
-## Architecture Overview
-
-### Frontend
-
-Located under `frontend/` (Vite + React).
-
-Key pieces:
-
-- `src/contexts/AuthContext.jsx`
-  - Manages `user`, `isAuthenticated`, `loading`.
-  - Provides `login`, `logout`, and `refreshUser` (calls `/auth/me`).
-  - Pulls `subscription_tier` and domain preferences into the global context.
-
-- `src/layouts/Navbar.jsx`
-  - Top nav with routes: Home, Verify, Modules, Subscription (only when logged in).
-  - Rumours sidebar and Rumour modal trigger.
-  - Auth area:
-    - Shows login button for guests.
-    - For authenticated users: colored profile icon (tier‑aware) and logout button.
-
-- `src/pages/Auth/Signup.jsx`
-  - Signup form collects:
-    - Full name
-    - Email
-    - Password + confirm
-    - Phone number
-    - Age
-    - **Domain preferences**: checkboxes for Politics, Technology, Health, Crime, Military, Sports, Entertainment, Social Media only.
-  - Calls `/auth/signup` with `domain_preferences` and personal data.
-
-- `src/pages/Profile/Profile.jsx`
-  - Protected profile page (via `ProtectedRoute`).
-  - Fetches subscription status via `subscriptionService.getSubscriptionStatus(user.id)`.
-  - Displays:
-    - Personal info: name, email, phone, age
-    - Interests (domain preferences) as animated tags
-    - Subscription card with tier color, status, next renewal date, days remaining
-    - Razorpay subscription metadata (last payment, subscription ID).
-  - “Manage Subscription” and “Back to Home” actions.
-
-- `src/pages/Subscription/Subscription.jsx`
-  - Lists Free / Pro / Enterprise plans with a modern pricing table UI.
-  - Loads Razorpay Checkout script and config.
-  - For Pro:
-    - Fetches or creates Razorpay plan.
-    - Calls `/subscriptions/create` with `user.id` and plan ID.
-    - Opens Razorpay checkout for recurring subscription.
-    - On success, refreshes user (`refreshUser`) and shows confirmation.
-
-- `src/pages/Verify/Verify.jsx` & `src/pages/Verify/ChatbotView.jsx`
-  - Full chat layout with message history, file upload, audio recording, and multi‑line textarea.
-  - Submits messages to `/chatbot/verify` as `FormData` (`text_input` + `files`).
-  - Renders AI and user bubbles, preserves newlines via `whitespace-pre-wrap`.
-
-- `src/hooks/useRumoursFeed.js`
-  - Connects to WebSocket feed for real‑time rumours.
-  - Transforms MongoDB documents into frontend shape:
-    - Maps verdict strings to **False** or **Uncertain**.
-    - Derives numeric confidence from `confidence_percentage` or a confidence level string.
-  - Filters to only include relevant verdicts for live alerts.
-
-- `src/components/RumourCard.jsx` & `src/components/RumourModal.jsx`
-  - Card shows claim snippet, verdict, and confidence percentage between verdict and time‑ago.
-  - Modal has redesigned layout:
-    - Balanced grid for Verdict/Verified On and Body/Summary.
-    - Read‑more / Read‑less for long text.
-    - Original post link with heading + external‑link icon.
-
-- `src/pages/Modules/Modules.jsx`
-  - Fetches the educational modules list.
-  - **Main modules view**:
-    - Search field.
-    - “For You” button (if logged in & has domain preferences).
-    - Tag filter chips for domains/tags.
-    - Module cards using `ModuleCard` with difficulty badges and tags.
-  - **Module detail view**:
-    - Overview header with title, description, and domain tags.
-    - Stats cards (time, trending score, red flags, verification tips).
-    - Technique explanation, red flags, verification tips, real‑world example, user actions, related patterns.
+### 5. Answer Generation (LLM Integration)
+We utilize **Google Gemini 2.5** as the reasoning engine to synthesize answers from the retrieved context.
+*   **Models**: The system prioritizes **`gemini-2.5-flash`** for speed and reliability, with fallback support for **`gemini-2.5-pro`**.
+*   **Prompt Engineering**:
+    *   **Persona**: Acts as an "insurance policy expert".
+    *   **Strict JSON Output**: The prompt enforces a strict JSON structure `{"answer": "..."}` to ensure deterministic and machine-readable responses.
+    *   **Context usage**: Explicit instructions to synthesize information across multiple vector sections and check for exclusions/waiting periods.
+*   **Robust Parsing**: A dedicated JSON extractor (`_extract_json_from_response`) handles potential LLM formatting errors (e.g., Markdown code blocks, relaxed syntax) to ensure the application never crashes on malformed model output.
+*   **Safety Handling**: The system detects and gracefully handles safety/content policy blocks from the Gemini API.
 
 ---
 
-### Backend
-
-Located under `backend/` (FastAPI).
-
-Key areas:
-
-- `main.py`
-  - Auth endpoints:
-    - `POST /auth/signup` – creates user in MongoDB (`users` collection), hashes password, stores domain & tag preferences.
-    - `POST /auth/login` – verifies credentials, returns mock token and user payload.
-    - `GET /auth/me` – derives user from mock token, attaches `subscription_tier` (from user doc or active subscription).
-  - Subscription endpoints (Razorpay):
-    - `GET /subscriptions/config` – exposes Razorpay key ID to frontend.
-    - `POST /subscriptions/plans` / `GET /subscriptions/plans` – plan management.
-    - `POST /subscriptions/create` – creates Razorpay subscription + upserts a document into `subscriptions` collection.
-    - `GET /subscriptions/status` – returns latest subscription per user, syncing status with Razorpay.
-    - `POST /subscriptions/cancel` – cancels subscription and updates MongoDB.
-    - `POST /webhooks/razorpay` – processes `subscription.activated`, `subscription.charged`, `subscription.cancelled`, `payment.failed` events and updates MongoDB + user `subscription_tier`.
-  - Educational modules:
-    - `GET /educational/modules` – pulls summarized modules from `weekly_posts` via `MongoDBService.get_educational_modules_list()`.
-    - `GET /educational/modules/{module_id}` – detailed module via `get_educational_module_by_id()`.
-  - Chatbot verification:
-    - `POST /chatbot/verify` – entrypoint that passes `text_input` and `files` to an `InputProcessor`, then routes to proper verification logic.
-  - Classic verify endpoints:
-    - `/verify/text`, `/verify/image`, `/verify/video` – direct verification routes for text, image, and video evidence.
-
-- `services/mongodb_service.py`
-  - Connects to MongoDB (`aegis` DB) with collections:
-    - `debunk_posts`, `weekly_posts`, `subscriptions`, `users`, `chat_sessions`, `chat_messages`.
-  - Rumours:
-    - `get_recent_posts`, `search_similar_rumours` etc.
-  - Educational modules:
-    - `get_educational_modules_list()` – returns unique modules by misinformation type with tags, trending score, etc.
-    - `get_educational_module_by_id()` – returns full module content plus example and tags.
-  - Users:
-    - `create_user`, `get_user_by_email`, `get_user_by_id`.
-    - `update_user_subscription_tier(user_id, subscription_tier)` – keeps `subscription_tier` in sync with Razorpay events.
-  - Subscriptions:
-    - `upsert_subscription`, `get_user_subscription`, `update_subscription_status`, `get_subscription_by_razorpay_id`.
+### 6. High-Performance Concurrency Strategy
+Performance is critical when handling large PDFs and complex RAG queries. We implement a multi-layered concurrency model:
+*   **Async I/O (`asyncio`)**:
+    *   Used for the primary PDF processing pipeline (`backend.py`).
+    *   Allows non-blocking operations, such as handling file uploads and network requests while the core pipeline initializes.
+*   **Parallel Query Processing (`enhanced_backend.py`)**:
+    *   We utilize **`concurrent.futures.ThreadPoolExecutor`** to handle multiple user questions simultaneously.
+    *   Instead of processing 5 queries sequentially (which would take Sum(T1...T5)), we run them in parallel threads, reducing total latency to approximately Max(T1...T5).
+    *   The system includes a **speedup calculator** that logs the efficiency gain (e.g., "5.00s parallel vs 20.00s sequential").
+*   **Multithreaded Embedding Generation**:
+    *   Vector embedding generation is offloaded to a thread pool (max 10 workers) to maximize throughput against the Pinecone Inference API.
+    *   Prevents network bottlenecks during the initial vectorization phase.
 
 ---
 
-## Data Models (Conceptual)
+## 💻 Tech Stack
 
-### User (MongoDB `users` collection)
-
-- `name`: string
-- `email`: string (unique)
-- `password`: sha256 hash (demo; use bcrypt in prod)
-- `phone_number`: string
-- `age`: number
-- `domain_preferences`: string[] (domains chosen at signup)
-- `tag_preferences`: string[] (e.g., Misinformation, Fact Check, Viral – if extended)
-- `subscription_tier`: `"Free" | "Pro" | "Enterprise"`
-- `created_at`, `updated_at`: timestamps
-
-### Subscription (MongoDB `subscriptions` collection)
-
-- `user_id`: string (ref to user)
-- `razorpay_subscription_id`: string
-- `razorpay_plan_id`: string
-- `plan_name`: string (`"Pro"`, `"Enterprise"`, etc.)
-- `status`: string (`"created"`, `"active"`, `"cancelled"`, `"expired"`, etc.)
-- `amount`: number
-- `currency`: string (`"INR"`)
-- `current_start`, `current_end`, `next_billing_at`: unix timestamps
-- `last_payment_*` fields
-- `created_at`, `updated_at`
-
-### Educational Module (from `weekly_posts.educational_module`)
-
-- `misinformation_type`: human‑readable name (also used for module ID)
-- `technique_explanation`: string
-- `red_flags`: string[]
-- `verification_tips`: string[]
-- `related_patterns`: string[]
-- `user_action_items`: string[]
-- `sources_of_technique`: string[]
-- `trending_score`: number
-- Tags & context:
-  - `tags`: from `post.metadata.tags`
-  - `example.heading`, `example.body`, `example.claim`, `example.verdict`, `example.tags`, `example.source_url`
+*   **Frontend**: Streamlit (Processing & Chat UI).
+*   **Core Logic**: Python 3.9+.
+*   **PDF Processing**:
+    *   `pdfplumber`: Advanced table extraction.
+    *   `PyMuPDF` (fitz): Layout and text extraction.
+*   **Vector Store**:
+    *   `Pinecone`: Cloud vector database.
+    *   `FAISS`: Efficient local vector search.
+*   **AI & ML**:
+    *   **LLM**: Google Gemini 2.5 (Flash & Pro) via `google-generativeai`.
+    *   **Embeddings**: `multilingual-e5-large` (via Pinecone Inference).
+    *   **Reranking**: `bge-reranker-v2-m3` (via Pinecone Inference).
+    *   **Utilities**: `pandas` (data manipulation), `numpy`.
+*   **Orchestration**: Custom `DocumentPipeline` implementation.
 
 ---
 
-## Running the Project
-
-> These commands may need adjustment depending on your environment; use them as a reference.
-
-### Backend (FastAPI)
-
-1. Create and activate a Python virtual environment.
-2. Install dependencies:
+## 📂 Project Structure
 
 ```bash
+JBBR-Backend/
+├── app.py                      # Main Streamlit application entry point
+├── requirements.txt            # Project dependencies
+├── backend.py & variants       # Backend logic (legacy/variants)
+├── src/                        # Core source code
+│   ├── pipeline.py             # Orchestrates the entire ingestion process
+│   ├── parse_documents.py      # PDF parsing logic
+│   ├── chunk_documents_optimized.py # Smart chunking logic
+│   ├── embed_and_index.py      # Embedding generation and indexing
+│   ├── faiss_query_processor.py # Query logic specifically for FAISS/Hybrid
+│   ├── document_registry.py    # Tracks processed files
+│   └── ...
+├── docs/                       # Directory to place input PDFs
+└── faiss_storage/              # Local FAISS index storage
+```
+
+---
+
+## 🚀 Setup & Usage
+
+### 1. Prerequisites
+*   Python 3.9 or higher.
+*   API Keys for **Pinecone** and **Google Gemini**.
+
+### 2. Installation
+```bash
+# Clone the repository
+git clone <repository_url>
+
+# Install dependencies
 pip install -r requirements.txt
 ```
 
-3. Ensure MongoDB is running and `MONGO_CONNECTION_STRING` is set in `backend/.env`.
-4. Ensure Razorpay keys are configured in `backend/.env` (`RAZORPAY_ID`, `RAZORPAY_KEY`, webhook secret).
-5. Run the FastAPI app (using uvicorn, example):
-
-```bash
-uvicorn main:app --reload
+### 3. Configuration
+Set up your secrets. You can create a `.env` file or use Streamlit secrets (`.streamlit/secrets.toml`) with the following keys:
+```ini
+PINECONE_API_KEY=your_pinecone_key
+GEMINI_API_KEY=your_gemini_key
 ```
 
-The backend will listen on `http://127.0.0.1:8000` by default.
-
-### Frontend (Vite + React)
-
-1. From the `frontend/` directory, install dependencies:
-
+### 4. Running the App
 ```bash
-npm install
+streamlit run app.py
 ```
 
-2. Ensure `VITE_API_BASE_URL` is set in `frontend/.env` (e.g. `http://127.0.0.1:8000`).
-3. Start the dev server:
-
-```bash
-npm run dev
-```
-
-The app will usually run on `http://localhost:5173` (or similar) with HMR.
-
----
-
-## How Personalization Works (For You Filters)
-
-1. User signs up and chooses domain preferences (e.g. Politics, Technology, Health).
-2. These preferences are stored in MongoDB and returned via `/auth/me`.
-3. The Modules page pulls `user.domain_preferences` from `AuthContext`.
-4. Clicking **For You** sets the modules tag filter to those preferences.
-5. Only modules whose `tags` intersect with the selected preferences are shown.
-
-This links rumours, educational content, and user profile into a cohesive personalized learning path.
-
----
-
-## Roadmap Ideas
-
-- Richer recommendation engine for modules (based on past completions + rumours seen).
-- More granular subscription tiers and usage‑based limits.
-- Multi‑language support for rumours, chatbot, and educational content.
-- Admin UI for curators to manage modules, tags, and verification rules.
-
-Project Aegis is designed to be a **high‑signal, high‑trust companion** for users navigating today’s information landscape—offering real‑time fact‑checks, deep context, and practical education, all in one place.
-
+### 5. Using the System
+1.  **Upload**: Place your insurance policy PDFs in the `docs/` folder.
+2.  **Process**: Click "Process Documents" in the sidebar. This runs the ingestion pipeline.
+3.  **Query**: Type your question (e.g., "Is dental surgery covered?") in the main input box.
+4.  **Review**: See the answer, confidence score, and specific source citations.
